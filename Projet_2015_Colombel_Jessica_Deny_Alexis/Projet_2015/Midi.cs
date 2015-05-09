@@ -8,9 +8,9 @@ namespace Projet_2015
 {
     class Midi : Service
     {
-        public int heureOpenEmployes { get; private set; }
-        public int minuteOpenEmployes { get; private set; }
-        public int heureOpenClients { get; private set; }
-        public int minuteOpenClients { get; private set; }
+        public override DateTime horaireOpenEmployes { get; private set; }
+        public override DateTime horaireCloseEmployes { get; private set; }
+        public override DateTime horaireOpenClients { get; private set; }
+        public override DateTime horaireCloseClients { get; private set; }
     }
 }

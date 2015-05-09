@@ -6,40 +6,16 @@ using System.Threading.Tasks;
 
 namespace Projet_2015
 {
-    
+    enum forme { Rond, Carre, Rectangle, Bar };
 
     class Program
-    {
-        public static void gestErreurEntier(int a)
-        {
-            try
-            {
-                a = int.Parse(Console.ReadLine());
-            }
-            catch
-            {
-                Console.WriteLine("Veuillez entrer un entier valide.");
-                gestErreurEntier(a);
-            }
-        }
-
-        public static void gestErreurDouble(double a)
-        {
-            try
-            {
-                a = double.Parse(Console.ReadLine());
-            }
-            catch
-            {
-                Console.WriteLine("Veuillez entrer un entier valide.");
-                gestErreurDouble(a);
-            }
-        }
-
-        public static enum forme { Rond, Carre, Rectangle, Bar };
+    {      
 
         static void Main(string[] args)
         {
+
+            List<Table> salle = new List<Table>();
+            //Restaurant ChezLesKikis = new Restaurant("ChezLesKikis", 80, 6, 4, 0.075, 0.05, salle);
         }
     }
 }

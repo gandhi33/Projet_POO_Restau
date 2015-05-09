@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Projet_2015
 {
-    abstract class Formule : Program
+    abstract class Formule
     {
         public abstract Restaurant restaurant { get; private set; }
-        public abstract int dureePreparation { get; protected set; }
-        public abstract int dureeConsommation { get; protected set; }
+        public abstract TimeSpan dureePreparation { get; protected set; }
+        public abstract TimeSpan dureeConsommation { get; protected set; }
     }
 }

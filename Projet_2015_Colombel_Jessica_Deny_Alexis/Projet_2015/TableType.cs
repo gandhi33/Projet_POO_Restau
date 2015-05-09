@@ -9,15 +9,15 @@ namespace Projet_2015
     class TableType : Table
     {
         public forme formeTable { get; private set; }
-        public bool jumelable { get; private set; } // private IAssemblage jumelable
 
         public TableType(Restaurant Resto)
         {
             restaurant = Resto;
             numeroTable = restaurant.listeTables.Count + 1;
             nbMaxPlaces = 1;
-            positionCuisine = 0;
+            //positionCuisine = 0;
             formeTable = forme.Bar;
+            //libre = true;
             jumelable = false;
         }
 
@@ -26,19 +26,45 @@ namespace Projet_2015
             restaurant = Resto;
             numeroTable = restaurant.listeTables.Count + 1;
             nbMaxPlaces = NbMaxPlaces;
-            positionCuisine = PosCuisine;
+            //positionCuisine = PosCuisine;
             formeTable = FTable;
+            //libre = true;
             jumelable = Jumelable;
-            if (Jumelable == true)
-                tablesJumelables.Add(this);
+            /*if (Jumelable == true)
+                tablesJumelables.Add(this);*/
         }
         
         public void ajouteTable()
         {
             int a;
             Console.WriteLine("Combien de places peut contenir cette table ?");
-            gestErreurEntier(a);
+            gestErreurEntier(out a);
 
+        }
+
+        public static void gestErreurEntier(out int a)
+        {
+            try
+            {
+                a = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Veuillez entrer un entier valide.");
+                gestErreurEntier(out a);
+            }
+        }
+        public static void gestErreurDouble(out double a)
+        {
+            try
+            {
+                a = double.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Veuillez entrer un entier valide.");
+                gestErreurDouble(out a);
+            }
         }
     }
 }

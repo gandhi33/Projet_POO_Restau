@@ -8,6 +8,7 @@ namespace Projet_2015
 {
     class FormuleType : Formule
     {
+        public abstract string nomFormule { get; private set; }
         public bool surPlace { get; private set; }
     }
 }

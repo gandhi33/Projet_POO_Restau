@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Projet_2015
 {
-    abstract class Service : Restaurant
+    abstract class Service
     {
-        public abstract int heureOpenEmployes;
-        public abstract int minuteOpenEmployes;
-        public abstract int heureOpenClients;
-        public abstract int minuteOpenClients;
+        abstract public DateTime horaireOpenEmployes;
+        abstract public DateTime horaireCloseEmployes;
+        abstract public DateTime horaireOpenClients;
+        abstract public DateTime horaireCloseClients;
     }
 }
