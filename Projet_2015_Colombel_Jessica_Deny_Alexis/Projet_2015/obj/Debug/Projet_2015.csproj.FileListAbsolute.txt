@@ -7,3 +7,5 @@ C:\Users\Alexis DENY\Documents\GitHub\Projet_POO_Restau\Projet_2015_Colombel_Jes
 C:\Users\Alexis DENY\Documents\GitHub\Projet_POO_Restau\Projet_2015_Colombel_Jessica_Deny_Alexis\Projet_2015\bin\Debug\Projet_2015.pdb
 C:\Users\Alexis DENY\Documents\GitHub\Projet_POO_Restau\Projet_2015_Colombel_Jessica_Deny_Alexis\Projet_2015\obj\Debug\Projet_2015.exe
 C:\Users\Alexis DENY\Documents\GitHub\Projet_POO_Restau\Projet_2015_Colombel_Jessica_Deny_Alexis\Projet_2015\obj\Debug\Projet_2015.pdb
+C:\Users\COLOMBEL\Documents\GitHub\Projet_POO_Restau\Projet_2015_Colombel_Jessica_Deny_Alexis\Projet_2015\obj\Debug\Projet_2015.exe
+C:\Users\COLOMBEL\Documents\GitHub\Projet_POO_Restau\Projet_2015_Colombel_Jessica_Deny_Alexis\Projet_2015\obj\Debug\Projet_2015.pdb

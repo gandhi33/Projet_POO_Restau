@@ -9,23 +9,14 @@ namespace Projet_2015
 {
     class Restaurant
     {
-        [XmlAttribute("NomRestaurant")]
         public string nomRestaurant { get; private set; }
-        [XmlElement("Midi")]
         public ServiceMidi midi { get; protected set; } //LISTE
-        [XmlElement("Soir")]
         public ServiceSoir soir { get; protected set; } // LISTE
-        [XmlElement("NombreMaxClients")]
         public int nbMaxClients { get; private set; }
-        [XmlElement("NombreMaxCuisiniers")]
         public int nbMaxCuisiniers { get; private set; }
-        [XmlElement("NombreMaxServeurs")]
         public int nbMaxServeurs { get; private set; }
-        [XmlElement("RatioCuisiniersClients")]
         public double ratioCuisiniersClients { get; private set; }
-        [XmlElement("RatioServeursClients")]
         public double ratioServeursClients { get; private set; }
-        [XmlElement("ListeTables")]
         public List<Table> listeTables {get; private set; }
 
         public Restaurant(string NomRestaurant, ServiceMidi Midi, ServiceSoir Soir, int NbMaxClients, int NbMaxCuisiniers, int NbMaxServeurs, double RatioCuisiniersClients, double RatioServeursClients, List<Table> ListeTables)

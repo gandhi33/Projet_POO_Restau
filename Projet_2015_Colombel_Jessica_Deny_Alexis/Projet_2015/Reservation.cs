@@ -3,31 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Projet_2015
 {
     class Reservation
     {
-        //[XmlElement("Resto")]
         public Restaurant restaurant { get; private set; }
-        //[XmlElement("Service")]
         public Service service { get; private set; }
-        //[XmlElement("NomClient")]
         public string nomClient { get; private set; }
-        //[XmlElement("NumeroTelephone")]
         public string numTelephone { get; private set; }
-        //[XmlElement("JourReservation")]
         public DateTime jourResa { get; private set; }
-        //[XmlElement("HoraireDebut")]
         public DateTime horaireDebutResa { get; private set; }
-        //[XmlElement("HoraireFin")]
         public DateTime horaireFinResa { get; private set; }
-        //[XmlElement("NombreConvive")]
         public int nbConvives { get; private set; }
-        //[XmlElement("Formule")]
         public Formule formuleRetenue { get; private set; }
-        //[XmlElement("TableAffecté")]
         public List<Table> tableAffectee { get; private set; }
 
         public Reservation()
@@ -73,6 +64,15 @@ namespace Projet_2015
             Console.WriteLine("Prénom du Client?");
             nomClient += Console.ReadLine();
             
+        }
+
+        public void EnregistrerResa()
+        {
+            XmlDocument docRestau = new XmlDocument();
+            docRestau.Load("docResto.xml");
+
+            XmlElement elem = docRestau.Element("Restaurants").Add(new XElement("Restaurant", new XAttribute("Id", ), 
+                new XElement("",), new XElement("",), new XElement("",), new XElement("",)); 
         }
 
         

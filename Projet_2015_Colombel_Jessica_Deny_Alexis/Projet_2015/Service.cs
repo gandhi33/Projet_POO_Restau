@@ -8,9 +8,10 @@ namespace Projet_2015
 {
     class Service
     {
-        public DateTime horaireOpenEmployes { get; set; }
-        public DateTime horaireCloseEmployes { get; set; }
-        public DateTime horaireOpenClients { get; set; }
-        public DateTime horaireCloseClients { get; set; }
+        public DateTime Jour { get; protected set; }
+        public DateTime horaireOpenEmployes { get; protected set; }
+        public DateTime horaireCloseEmployes { get; protected set; }
+        public DateTime horaireOpenClients { get; protected set; }
+        public DateTime horaireCloseClients { get; protected set; }
     }
 }
