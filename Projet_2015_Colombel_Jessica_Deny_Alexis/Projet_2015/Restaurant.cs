@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Projet_2015
 {
     class Restaurant
     {
+        [XmlAttribute("NomRestaurant")]
         public string nomRestaurant { get; private set; }
-        public Midi midi { get; protected set; }
-        public Soir soir { get; protected set; }
+        [XmlElement("Midi")]
+        public ServiceMidi midi { get; protected set; } //LISTE
+        [XmlElement("Soir")]
+        public ServiceSoir soir { get; protected set; } // LISTE
+        [XmlElement("NombreMaxClients")]
         public int nbMaxClients { get; private set; }
+        [XmlElement("NombreMaxCuisiniers")]
         public int nbMaxCuisiniers { get; private set; }
+        [XmlElement("NombreMaxServeurs")]
         public int nbMaxServeurs { get; private set; }
+        [XmlElement("RatioCuisiniersClients")]
         public double ratioCuisiniersClients { get; private set; }
+        [XmlElement("RatioServeursClients")]
         public double ratioServeursClients { get; private set; }
+        [XmlElement("ListeTables")]
         public List<Table> listeTables {get; private set; }
 
-        public Restaurant(string NomRestaurant, Midi Midi, Soir Soir, int NbMaxClients, int NbMaxCuisiniers, int NbMaxServeurs, double RatioCuisiniersClients, double RatioServeursClients, List<Table> ListeTables)
+        public Restaurant(string NomRestaurant, ServiceMidi Midi, ServiceSoir Soir, int NbMaxClients, int NbMaxCuisiniers, int NbMaxServeurs, double RatioCuisiniersClients, double RatioServeursClients, List<Table> ListeTables)
         {
             nomRestaurant = NomRestaurant;
             midi = Midi;
@@ -31,10 +41,15 @@ namespace Projet_2015
             listeTables = ListeTables;
         }
 
+        // constructeur vide obligatoire pour la sérialisation
         public Restaurant()
+        {           
+        }
+
+        /*public Restaurant()
         {
             demandeInfo();
-        }
+        }*/
 
         public void demandeInfo()
         {
@@ -63,6 +78,21 @@ namespace Projet_2015
 
             }
         }
+
+        public override string ToString()
+        {
+            string ch = "Nom : " + nomRestaurant +
+                        "\nNombre de Client : " + nbMaxClients +
+                        "\nNombre de Serveur : " + nbMaxServeur +
+                        "\nRatio Cuisinier/Client : " + ratioCuisiniersClients +
+                        "\nRatio Serveur/Client : " + ratioServeursClients +
+                        "\nNombre de table : " + listeTables.Capacity;                     
+
+            return ch; 
+            
+        }
+
+
         public static void gestErreurEntier(int a)
         {
             try
@@ -87,6 +117,8 @@ namespace Projet_2015
                 gestErreurDouble(a);
             }
         }
+
+        
 
         
     }

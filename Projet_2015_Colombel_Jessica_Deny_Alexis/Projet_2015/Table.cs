@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Projet_2015
 {
     
-    abstract class Table : Program
+    abstract class Table 
     {
         abstract public Restaurant restaurant { get; protected set; }
         abstract public int numeroTable { get; protected set; }

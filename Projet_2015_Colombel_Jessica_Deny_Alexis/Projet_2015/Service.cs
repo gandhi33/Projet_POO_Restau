@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Projet_2015
 {
-    abstract class Service
+    class Service
     {
-        abstract public DateTime horaireOpenEmployes;
-        abstract public DateTime horaireCloseEmployes;
-        abstract public DateTime horaireOpenClients;
-        abstract public DateTime horaireCloseClients;
+        public DateTime horaireOpenEmployes { get; set; }
+        public DateTime horaireCloseEmployes { get; set; }
+        public DateTime horaireOpenClients { get; set; }
+        public DateTime horaireCloseClients { get; set; }
     }
 }

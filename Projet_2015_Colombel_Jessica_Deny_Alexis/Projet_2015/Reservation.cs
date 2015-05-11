@@ -3,21 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Projet_2015
 {
     class Reservation
     {
+        [XmlElement("Resto")]
         Restaurant restaurant { get; private set; }
+        [XmlElement("Service")]
         public Service service { get; private set; }
+        [XmlElement("NomClient")]
         public string nomClient { get; private set; }
-        public string numTelephone { get; private set; }
+        [XmlElement("NumeroTelephone")]
+        public int numTelephone { get; private set; }
+        [XmlElement("JourReservation")]
         public DateTime jourResa { get; private set; }
+        [XmlElement("HoraireDebut")]
         public DateTime horaireDebutResa { get; private set; }
+        [XmlElement("HoraireFin")]
         public DateTime horaireFinResa { get; private set; }
+        [XmlElement("NombreConvive")]
         public int nbConvives { get; private set; }
+        [XmlElement("Formule")]
         public Formule formuleRetenue { get; private set; }
+        [XmlElement("TableAffecté")]
         public List<Table> tableAffectee { get; private set; }
+
+        public Reservation()
+        { }
+
+        public Reservation(string Nom, int Numero, DateTime Jour, DateTime HeureDebut, DateTime HeureFin, int Convive, Formule formule, List<Table> table)
+        {
+ 
+        }
 
         public static int gestErreurEntier(int a)
         {

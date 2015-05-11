@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Projet_2015
 {
     class TableType : Table
     {
-        public forme formeTable { get; private set; }
+        /*public forme formeTable { get; private set; }
 
         public TableType(Restaurant Resto)
         {
@@ -65,6 +66,6 @@ namespace Projet_2015
                 Console.WriteLine("Veuillez entrer un entier valide.");
                 gestErreurDouble(out a);
             }
-        }
+        }*/
     }
 }

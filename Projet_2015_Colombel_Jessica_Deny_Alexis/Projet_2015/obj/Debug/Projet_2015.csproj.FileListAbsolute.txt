@@ -1,1 +1,3 @@
 c:\users\alexis deny\documents\visual studio 2013\Projects\Projet_2015_Colombel_Jessica_Deny_Alexis\Projet_2015\bin\Debug\Projet_2015.exe.config
+C:\Users\COLOMBEL\Documents\GitHub\Projet_POO_Restau\Projet_2015_Colombel_Jessica_Deny_Alexis\Projet_2015\bin\Debug\Projet_2015.exe.config
+C:\Users\COLOMBEL\Documents\GitHub\Projet_POO_Restau\Projet_2015_Colombel_Jessica_Deny_Alexis\Projet_2015\obj\Debug\Projet_2015.csprojResolveAssemblyReference.cache
