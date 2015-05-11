@@ -9,25 +9,25 @@ namespace Projet_2015
 {
     class Reservation
     {
-        [XmlElement("Resto")]
-        Restaurant restaurant { get; private set; }
-        [XmlElement("Service")]
+        //[XmlElement("Resto")]
+        public Restaurant restaurant { get; private set; }
+        //[XmlElement("Service")]
         public Service service { get; private set; }
-        [XmlElement("NomClient")]
+        //[XmlElement("NomClient")]
         public string nomClient { get; private set; }
-        [XmlElement("NumeroTelephone")]
+        //[XmlElement("NumeroTelephone")]
         public string numTelephone { get; private set; }
-        [XmlElement("JourReservation")]
+        //[XmlElement("JourReservation")]
         public DateTime jourResa { get; private set; }
-        [XmlElement("HoraireDebut")]
+        //[XmlElement("HoraireDebut")]
         public DateTime horaireDebutResa { get; private set; }
-        [XmlElement("HoraireFin")]
+        //[XmlElement("HoraireFin")]
         public DateTime horaireFinResa { get; private set; }
-        [XmlElement("NombreConvive")]
+        //[XmlElement("NombreConvive")]
         public int nbConvives { get; private set; }
-        [XmlElement("Formule")]
+        //[XmlElement("Formule")]
         public Formule formuleRetenue { get; private set; }
-        [XmlElement("TableAffecté")]
+        //[XmlElement("TableAffecté")]
         public List<Table> tableAffectee { get; private set; }
 
         public Reservation()

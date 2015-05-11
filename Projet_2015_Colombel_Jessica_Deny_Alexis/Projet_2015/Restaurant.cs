@@ -72,7 +72,7 @@ namespace Projet_2015
             {
                 for(int j=0; j<nbMaxClients; j++)
                 {
-                    TableType table = new TableType(this);
+                    Table table = new Table();
                     listeTables.Add(table);
                 }
 
@@ -83,7 +83,7 @@ namespace Projet_2015
         {
             string ch = "Nom : " + nomRestaurant +
                         "\nNombre de Client : " + nbMaxClients +
-                        "\nNombre de Serveur : " + nbMaxServeur +
+                        "\nNombre de Serveur : " + nbMaxServeurs +
                         "\nRatio Cuisinier/Client : " + ratioCuisiniersClients +
                         "\nRatio Serveur/Client : " + ratioServeursClients +
                         "\nNombre de table : " + listeTables.Capacity;                     
