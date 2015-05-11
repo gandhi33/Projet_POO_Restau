@@ -66,7 +66,6 @@ namespace Projet_2015
             while (a);
 
             return;
-
         }
                
 
@@ -142,7 +141,7 @@ namespace Projet_2015
 
             Console.WriteLine("Que souhaitez-vous faire ?");
             Console.WriteLine("");
-            Console.WriteLine("1) Acheter une table");
+            Console.WriteLine("1) Rajouter une table");
             Console.WriteLine("2) Retirer une table de la salle");
             Console.WriteLine("");
             Console.WriteLine("Tapez 0 pour retourner au menu principal");

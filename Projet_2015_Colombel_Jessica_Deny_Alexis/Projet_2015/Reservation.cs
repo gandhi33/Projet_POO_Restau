@@ -16,7 +16,7 @@ namespace Projet_2015
         [XmlElement("NomClient")]
         public string nomClient { get; private set; }
         [XmlElement("NumeroTelephone")]
-        public int numTelephone { get; private set; }
+        public string numTelephone { get; private set; }
         [XmlElement("JourReservation")]
         public DateTime jourResa { get; private set; }
         [XmlElement("HoraireDebut")]
@@ -33,7 +33,7 @@ namespace Projet_2015
         public Reservation()
         { }
 
-        public Reservation(string Nom, int Numero, DateTime Jour, DateTime HeureDebut, DateTime HeureFin, int Convive, Formule formule, List<Table> table)
+        public Reservation(string Nom, string Numero, DateTime Jour, DateTime HeureDebut, DateTime HeureFin, int Convive, Formule formule, List<Table> table)
         {
  
         }
@@ -72,17 +72,10 @@ namespace Projet_2015
             nomClient = Console.ReadLine();
             Console.WriteLine("Prénom du Client?");
             nomClient += Console.ReadLine();
-            if (trouveNomClient() = true) //trouvenomClient : A FAIRE
-            { 
-                numTelephone = "02616562";
-            }
-        }
-
-        public bool trouveNomClient()
-        {
             
         }
 
+        
         public Service quelService()
         {
                 if (horaireDebutResa < restaurant.midi.horaireCloseClients - formuleRetenue.dureeConsommation && horaireDebutResa > restaurant.midi.horaireCloseClients)
