@@ -9,14 +9,12 @@ namespace Projet_2015
 {
     class Formule
     {        
-        public string nomFormule { get; protected set; }
         public TimeSpan dureePreparation { get; protected set; }
         public TimeSpan dureeConsommation { get; protected set; }
         public bool surPlace { get; protected set; }
 
-        public Formule(string Nom, TimeSpan Preparation, TimeSpan Consommation, bool SurPlace)
+        public Formule(TimeSpan Preparation, TimeSpan Consommation, bool SurPlace)
         {
-            nomFormule = Nom;
             dureePreparation = Preparation;
             dureeConsommation = Consommation;
             surPlace = SurPlace; 

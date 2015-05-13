@@ -10,8 +10,8 @@ namespace Projet_2015
     class Restaurant
     {
         public string nomRestaurant { get; private set; }
-        public ServiceMidi midi { get; protected set; } //LISTE
-        public ServiceSoir soir { get; protected set; } // LISTE
+        public Service service { get; protected set; }                     // Avoir juste les horaires pour créer des services dans la liste qui suit plus facilement
+        public List<Service> listeServices { get; protected set; }
         public int nbMaxClients { get; private set; }
         public int nbMaxCuisiniers { get; private set; }
         public int nbMaxServeurs { get; private set; }
@@ -19,11 +19,11 @@ namespace Projet_2015
         public double ratioServeursClients { get; private set; }
         public List<Table> listeTables {get; private set; }
 
-        public Restaurant(string NomRestaurant, ServiceMidi Midi, ServiceSoir Soir, int NbMaxClients, int NbMaxCuisiniers, int NbMaxServeurs, double RatioCuisiniersClients, double RatioServeursClients, List<Table> ListeTables)
+        public Restaurant(string NomRestaurant, Service Service, List<Service> ListeServices, int NbMaxClients, int NbMaxCuisiniers, int NbMaxServeurs, double RatioCuisiniersClients, double RatioServeursClients, List<Table> ListeTables)
         {
             nomRestaurant = NomRestaurant;
-            midi = Midi;
-            soir = Soir;
+            service = Service;
+            listeServices = ListeServices;
             nbMaxClients = NbMaxClients;
             nbMaxCuisiniers = NbMaxCuisiniers;
             nbMaxServeurs = NbMaxServeurs;
@@ -35,6 +35,20 @@ namespace Projet_2015
         // constructeur vide obligatoire pour la sérialisation
         public Restaurant()
         {           
+        }
+
+        public Service trouveService(DateTime J)
+        {
+            int i = 0;
+            while (i < listeServices.Count)
+                if (listeServices[i].jour == J)
+                {
+                    return listeServices[i];
+                }
+            listeServices.Add(new Service(service.horaireOpenEmployesMidi, service.horaireCloseEmployesMidi, service.horaireOpenClientsMidi,
+                service.horaireCloseClientsMidi, service.horaireOpenEmployesSoir, service.horaireCloseEmployesSoir, service.horaireOpenClientsSoir,
+                service.horaireCloseClientsMidi, J, new List<Reservation>()));
+            return listeServices[listeServices.Count - 1];
         }
 
         /*public Restaurant()
@@ -63,8 +77,8 @@ namespace Projet_2015
             {
                 for(int j=0; j<nbMaxClients; j++)
                 {
-                    Table table = new Table();
-                    listeTables.Add(table);
+                    //Table table = new Table();
+                    //listeTables.Add(table);
                 }
 
             }

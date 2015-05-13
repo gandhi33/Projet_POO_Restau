@@ -12,9 +12,23 @@ namespace Projet_2015
     {
         public Restaurant restaurant { get; protected set; }
         public int numeroTable { get; protected set; }
+        protected static int nbTotalTables;
         public int nbMaxPlaces { get; protected set; }
-        //abstract public int presVitrine { get; protected set; }
+        //abstract public bool presVitrine { get; protected set; }
         public bool jumelable { get; protected set; }
+        public int nbPlacesSiJumelage { get; protected set; }
+
+        public Table(Restaurant R, int NMP, bool Jum, int NPSJ)
+        {
+            restaurant = R;
+            numeroTable = nbTotalTables + 1;
+            nbTotalTables++;
+            nbMaxPlaces = NMP;
+            //presVitrine = PV;
+            jumelable = Jum;
+            nbPlacesSiJumelage = NPSJ;
+
+        }
 
         public void ajouteTable()
         {

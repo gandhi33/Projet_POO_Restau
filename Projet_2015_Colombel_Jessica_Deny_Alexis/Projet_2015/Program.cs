@@ -11,19 +11,13 @@ namespace Projet_2015
 
         static void Main(string[] args)
         {
-            Restaurant Kiki = new Restaurant();
-            bool a = true;
-            do
-            {
-                a=Menu();
-            }
-            while (a);
+            Menu();
 
             return;
         }
                
 
-        public static bool Menu()
+        public static void Menu()
         {
             Console.WriteLine("Bienvenue Chez Kiki");
             Console.WriteLine();
@@ -61,30 +55,23 @@ namespace Projet_2015
                     Console.WriteLine("Au revoir !");
                     Console.WriteLine("Appuyez sur la touche entrée pour quitter.");
                     Console.ReadLine();
-                    a = false;
                     break;
                 case 1:
                     GererReservation();
-                    a = Encore();
                     break;
                 case 2:
                     GererRestaurant();
-                    a = Encore();
                     break;
                 case 3:
                     GererTable();
-                    a = Encore();
                     break;
                 case 4:
                     GererFormule();
-                    a = Encore();
                     break;
                 case 5:
                     //Kiki.ToString();
-                    a = Encore();
                     break;
             }
-            return a;
         }
 
         public static void GererReservation()
@@ -109,63 +96,62 @@ namespace Projet_2015
                 Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
                 frappe = Console.ReadLine();
             }
-            while (frappe != "0" && frappe != "1" && frappe != "2" && frappe != "3" && frappe != "4" && frappe != "5");
+            while (frappe != "0" && frappe != "1" && frappe != "2" && frappe != "3");
             int choix = int.Parse(frappe);
             switch (choix)
             {
                 case 0:
+                    Menu();
                     break;
-            }
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
 
-            if (choix == 0)
-            {
-                return;
-            }
-            if (choix == 1)
-            {
-                
-            }
-            if (choix == 2)
-            {
-                
-            }
-            if (choix == 3)
-            {
-                
-            }
- 
-            
+            }           
         }
 
         public static void GererRestaurant()
         {
             int choix = 0;
 
-            Console.WriteLine("Que souhaitez-vous faire ?");
-            Console.WriteLine("");
-            Console.WriteLine("1) Créer une nouvelle réservation");
-            Console.WriteLine("2) Modifier une réservation");
-            Console.WriteLine("3) Annuler une réservation");
-            Console.WriteLine("");
-            Console.WriteLine("Tapez 0 pour retourner au menu principal");
+            Console.WriteLine("+----------------------------------------------------------------------------+");
+            Console.WriteLine("|                         GESTION DES RESERVATIONS                           |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("| Requête 1 | Créer une nouvelle réservation                                 |");
+            Console.WriteLine("|  TAPEZ 1  |                                                                |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("| Requête 2 | Modifier une réservation                                       |");
+            Console.WriteLine("|  TAPEZ 2  |                                                                |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("| Requête 3 | Annuler une réservation                                        |");
+            Console.WriteLine("|  TAPEZ 3  |                                                                |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("|  Tapez 0  | Retourner au menu principal                                    |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
 
-            choix = int.Parse(Console.ReadLine());
-
-            if (choix == 0)
+            string frappe;
+            do
             {
-                return;
+                Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
+                frappe = Console.ReadLine();
             }
-            if (choix == 1)
-            {
+            while (frappe != "0" && frappe != "1" && frappe != "2" && frappe != "3");
 
-            }
-            if (choix == 2)
+            choix = int.Parse(frappe);
+            switch(choix)
             {
-
-            }
-            if (choix == 3)
-            {
-
+                case 0:
+                    Menu();
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
             }
         }
 
@@ -173,83 +159,79 @@ namespace Projet_2015
         {
             int choix = 0;
 
-            Console.WriteLine("Que souhaitez-vous faire ?");
-            Console.WriteLine("");
-            Console.WriteLine("1) Rajouter une table");
-            Console.WriteLine("2) Retirer une table de la salle");
-            Console.WriteLine("");
-            Console.WriteLine("Tapez 0 pour retourner au menu principal");
+            Console.WriteLine("+----------------------------------------------------------------------------+");
+            Console.WriteLine("|                         GESTION DES TABLES                                 |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("| Requête 1 | Ajouter une table dans la salle                                |");
+            Console.WriteLine("|  TAPEZ 1  |                                                                |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("| Requête 2 | Retirer une table de la salle                                  |");
+            Console.WriteLine("|  TAPEZ 2  |                                                                |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("|  Tapez 0  | Retourner au menu principal                                    |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
 
-            choix = int.Parse(Console.ReadLine());
-
-            if (choix == 0)
+            string frappe;
+            do
             {
-                return;
+                Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
+                frappe = Console.ReadLine();
             }
-            if (choix == 1)
-            {
+            while (frappe != "0" && frappe != "1" && frappe != "2");
 
-            }
-            if (choix == 2)
+            choix = int.Parse(frappe);
+            switch (choix)
             {
-
+                case 0:
+                    Menu();
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
             }
-            
         }
 
         public static void GererFormule()
         {
             int choix = 0;
 
-            Console.WriteLine("Que souhaitez-vous faire ?");
-            Console.WriteLine("");
-            Console.WriteLine("1) Créer une nouvelle formule");
-            Console.WriteLine("2) Modifier une formule");
-            Console.WriteLine("3) Supprimer une formule");
-            Console.WriteLine("");
-            Console.WriteLine("Tapez 0 pour retourner au menu principal");
+            Console.WriteLine("+----------------------------------------------------------------------------+");
+            Console.WriteLine("|                           GESTION DES FORMULES                             |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("| Requête 1 | Créer une nouvelle formule                                     |");
+            Console.WriteLine("|  TAPEZ 1  |                                                                |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("| Requête 2 | Modifier une formule                                           |");
+            Console.WriteLine("|  TAPEZ 2  |                                                                |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("| Requête 3 | Supprimer une formule                                          |");
+            Console.WriteLine("|  TAPEZ 3  |                                                                |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("|  Tapez 0  | Retourner au menu principal                                    |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
 
-            choix = int.Parse(Console.ReadLine());
-
-            if (choix == 0)
-            {
-                return;
-            }
-            if (choix == 1)
-            {
-
-            }
-            if (choix == 2)
-            {
-
-            }
-            if (choix == 3)
-            {
-
-            }
-        }       
- 
-        public static bool Encore()
-        {
-            int x = 2;
-
+            string frappe;
             do
             {
-                Console.WriteLine("Souhaitez-vous faire autre chose ?");
-                Console.WriteLine("Tapez 1 pour oui, tapez 0 pour quitter");
+                Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
+                frappe = Console.ReadLine();
             }
-            while (x != 0 || x != 1);
- 
-            if(x==0)
-            {
-                return false; 
-            }
-            else
-            {
-                return true;
-            }
+            while (frappe != "0" && frappe != "1" && frappe != "2" && frappe != "3");
 
-        }
-
+            choix = int.Parse(frappe);
+            switch (choix)
+            {
+                case 0:
+                    Menu();
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+        }       
     }
 }
