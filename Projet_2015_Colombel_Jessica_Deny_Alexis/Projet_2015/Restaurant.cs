@@ -109,7 +109,10 @@ namespace Projet_2015
             }
         }
 
-        
+        public void EnregistrerResto()
+        {
+ 
+        }
 
         
     }
