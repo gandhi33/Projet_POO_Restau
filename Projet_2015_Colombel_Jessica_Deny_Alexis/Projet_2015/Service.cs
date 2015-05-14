@@ -40,5 +40,16 @@ namespace Projet_2015
             jour = J;
             reservations = Resas;
         }
+
+        public void AjouteService()
+        { 
+            // Lalalala
+        }
+
+        public void EnregistrerService()
+        {
+            //Lalou
+        }
+
     }
 }

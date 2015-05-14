@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Projet_2015
@@ -18,6 +19,7 @@ namespace Projet_2015
         public double ratioCuisiniersClients { get; private set; }
         public double ratioServeursClients { get; private set; }
         public List<Table> listeTables {get; private set; }
+        public List<Formule> listeFormules { get; private set; }
 
         public Restaurant(string NomRestaurant, Service Service, List<Service> ListeServices, int NbMaxClients, int NbMaxCuisiniers, int NbMaxServeurs, double RatioCuisiniersClients, double RatioServeursClients, List<Table> ListeTables)
         {
@@ -125,9 +127,49 @@ namespace Projet_2015
 
         public void EnregistrerResto()
         {
- 
+            // jij
         }
 
+        public void ModifierInformation()
+        {
+            // kokok
+        }
+
+        public void AjoutFormule()
+        {
+            string Nom;
+            TimeSpan Preparation, Consommation, zero;
+            bool surPlace;
+            zero = new TimeSpan(0, 0, 0);
+
+            Console.WriteLine("Nom de la formule : ");
+            Nom = Console.ReadLine();
+            Console.WriteLine("");
+            Console.WriteLine("Durée de préparation : ");
+            Preparation = TimeSpan.Parse(Console.ReadLine());
+            Console.WriteLine("");
+            Console.WriteLine("Duréee de consommation : ");
+            Consommation = TimeSpan.Parse(Console.ReadLine());
+            Console.WriteLine("");
+
+            if (Consommation == zero)
+            {
+                surPlace = false;
+            }
+            else
+            {
+                surPlace = true;
+            }
+
+            listeFormules.Add(new Formule(Preparation, Consommation, surPlace));
+            
+            XDocument docInfo = new XDocument();
+            docInfo = XDocument.Load("docInfo.xml");
+
+            docInfo.Element("Formules").Add(new XElement("Formule", new XAttribute("IdFormule", Nom),
+                new XElement("DureePreparation", Preparation), new XElement("DureeConsommation", Consommation), new XElement("SurPlace", surPlace)));
+
+        }
         
     }
 }

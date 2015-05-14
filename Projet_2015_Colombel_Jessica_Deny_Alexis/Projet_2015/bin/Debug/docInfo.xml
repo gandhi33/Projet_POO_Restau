@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Restaurants>
+    <Restaurant IdRestaurant="Chez Kiki">
+        <NombreMaxClients>50</NombreMaxClients>
+        <NombreMaxCuisiniers>6</NombreMaxCuisiniers>
+        <NombreMaxServeurs>4</NombreMaxServeurs>
+        <RatioCuisiniersClients>0,12</RatioCuisiniersClients>
+        <RatioServeursClients>0.08</RatioServeursClients>        
+    </Restaurant>
+</Restaurants>
+<Formules>
+    <Formule>
+        <DureePreparation></DureePreparation>
+        <DureeConsommation></DureeConsommation>
+        <SurPlace></SurPlace>
+    </Formule>    
+</Formules>
+<Tables>
+    <Table>
+        <Forme></Forme>
+        <NombreMaxPlace></NombreMaxPlace>
+        <jumelable></jumelable>
+    </Table>
+</Tables>
+

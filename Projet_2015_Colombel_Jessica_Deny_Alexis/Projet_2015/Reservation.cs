@@ -102,17 +102,26 @@ namespace Projet_2015
         public void EnregistrerResa()
         {
             XmlDocument docRestau = new XmlDocument();
-            docRestau.Load("docResto.xml");
+            docRestau.Load("docRestau.xml");
 
-            XmlElement elem = docRestau.Element("Restaurants").Add(new XElement("Restaurant", new XAttribute("Id", ), 
-                new XElement("",), new XElement("",), new XElement("",), new XElement("",))); 
+            docRestau.Element("Reservations").Add(new XElement("Reservation", new XAttribute("IdReservation", nomClient), 
+                new XElement("NumTelephone",numTelephone), new XElement("JourResa",jourResa), new XElement("HoraireDebut",horaireDebutResa), new XElement("",))); 
+
+            // Finir
+        }
+
+        public void ModifierResa()
+        {
+            // lalala
         }
 
         public List<Table> trouveTables(Restaurant R, int NbC, Service S, DateTime HDR, DateTime HFR)
         {
 
-            List<Table> res = new List<Table>();
-            List<Table> tablesBonNombrePlaces = new List<Table>();
+            List<Table> res = new List<Table>(); // Tables qui seront affectées
+            List<Table> tablesBonNombrePlaces = new List<Table>(); // Tables qui ont le bon nombre de places
+            
+            // Rempli la liste des tables au bon nombre de place.
             for (int i = 0; i < R.listeTables.Count; i++)
             {
                 if (NbC == R.listeTables[i].nbMaxPlaces)
@@ -120,6 +129,8 @@ namespace Projet_2015
                     tablesBonNombrePlaces.Add(R.listeTables[i]);
                 }
             }
+
+            // Retire les tables qui sont déjà prise pour le service dans le tableau
 
             for (int j = 0; j < S.reservations.Count; j++)
             {
@@ -133,19 +144,19 @@ namespace Projet_2015
                         {
                             tablesBonNombrePlaces.RemoveAt(i);
                         }
-                        else
-                        {
-                            res.Add(tablesBonNombrePlaces[i]);
-                            return res;
-                        }
+                        
                     }
                 }
             }
+            // Affecte la première table de la liste des tables disponibles au bon nombre
             if (tablesBonNombrePlaces.Count != 0)
             {
                 res.Add(tablesBonNombrePlaces[0]);
                 return res;
             }
+
+            // Si pas de tables dispo au bon nombre
+            // Tables de capacité inférieur et que l'on peut jumeler
 
             List<Table> tablesNombreInf = new List<Table>();
             for (int i = 0; i < R.listeTables.Count; i++)
@@ -167,14 +178,14 @@ namespace Projet_2015
                         {
                             tablesNombreInf.RemoveAt(i);
                         }
-                        else
+                        /*else
                         {
                             res.Add(tablesNombreInf[i]);
                             if (comptePlaces(res) >= NbC)
                             {
                                 return res;
                             }
-                        }
+                        }*/
                     }
                 }
             }
@@ -188,6 +199,8 @@ namespace Projet_2015
                 return res;
             }
             res.Clear();
+
+            // Si pas de jumelage possible, on peut prendre des tables plus grandes 
 
             List<Table> tablesNombreSup = new List<Table>();
             for (int i = 0; i < R.listeTables.Count; i++)
@@ -235,6 +248,8 @@ namespace Projet_2015
             {
                 Console.WriteLine("La réservation est impossible, aucune table disponible pour ce nombre de convives !");
                 // Je veux sortir du constructeur sans créer la réservation... Comment faire ??
+                // Tu peux créer la réservation et ne pas l'enregistrer dans le XML.
+                // De toute façon, puisqu'aucune table n'a été réservé, ça ne pose pas de problème.
             }
         }
     }

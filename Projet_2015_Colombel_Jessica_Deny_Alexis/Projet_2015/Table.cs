@@ -35,7 +35,18 @@ namespace Projet_2015
             int a;
             Console.WriteLine("Combien de places peut contenir cette table ?");
             gestErreurEntier(out a);
+            // Non fini
 
+        }
+
+        public void enregistrerTable()
+        {
+            // A faire
+        }
+
+        public void supprimerTable()
+        {
+            // A faire
         }
 
         public static void gestErreurEntier(out int a)
