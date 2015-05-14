@@ -7,7 +7,8 @@ using System.Xml.Serialization;
 
 namespace Projet_2015
 {
-    
+    private enum Forme { bar, carree, rectangulaire, ronde}
+
     class Table 
     {
         public Restaurant restaurant { get; protected set; }

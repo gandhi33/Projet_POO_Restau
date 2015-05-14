@@ -92,7 +92,7 @@ namespace Projet_2015
             DateTime HDR = DateTime.Parse(Console.ReadLine());           
             Service Service = R.trouveService(JourResa);
             Console.WriteLine("Nombre de convives ?");
-            int NbConvives = gestErreurEntier(int.Parse(Console.ReadLine()));    
+            int NbConvives = Program.gestErreurEntier(int.Parse(Console.ReadLine()));    
             // Récupération des différentes formules du restaurant
             Console.WriteLine("Quelle Formule (entrez le numéro) ?");
             for (int i=0; i < R.listeFormules.Count; i++)
@@ -103,7 +103,7 @@ namespace Projet_2015
             do
             {
                 Console.WriteLine("Entrez le numéro de la formule souhaitée s'il vous plait.");
-                frappe = gestErreurEntier(int.Parse(Console.ReadLine()));
+                frappe = Program.gestErreurEntier(int.Parse(Console.ReadLine()));
             }
             while (frappe < 0 && frappe > (R.listeFormules.Count - 1));
             Formule FormRet = R.listeFormules[frappe];
@@ -155,34 +155,7 @@ namespace Projet_2015
         }
 
 
-        public static int gestErreurEntier(int a)
-        {
-            try
-            {
-                a = int.Parse(Console.ReadLine());
-                return a;
-            }
-            catch
-            {
-                Console.WriteLine("Veuillez entrer un entier valide.");
-                gestErreurEntier(a);
-                return a;
-            }
-        }
-        public static double gestErreurDouble(double a)
-        {
-            try
-            {
-                a = double.Parse(Console.ReadLine());
-                return a;
-            }
-            catch
-            {
-                Console.WriteLine("Veuillez entrer un entier valide.");
-                gestErreurDouble(a);
-                return a;
-            }
-        }
+        
         
         public void EnregistrerResa()
         {
