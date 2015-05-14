@@ -36,7 +36,7 @@ namespace Projet_2015
             Console.WriteLine("| Requête 4 | Gérer les formules                                             |");
             Console.WriteLine("|  TAPEZ 4  |                                                                |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
-            Console.WriteLine("| Requête 5 | Informations restaurants                                       |");
+            Console.WriteLine("| Requête 5 | Informations restaurant                                        |");
             Console.WriteLine("|  TAPEZ 5  |                                                                |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
             Console.WriteLine("|  Tapez 0  | Quitter                                                        |");
@@ -118,15 +118,15 @@ namespace Projet_2015
             int choix = 0;
 
             Console.WriteLine("+----------------------------------------------------------------------------+");
-            Console.WriteLine("|                         GESTION DES RESERVATIONS                           |");
+            Console.WriteLine("|                           GESTION DU RESTAURANT                            |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
-            Console.WriteLine("| Requête 1 | Créer une nouvelle réservation                                 |");
+            Console.WriteLine("| Requête 1 | Modifier le nom du restaurant                                  |");
             Console.WriteLine("|  TAPEZ 1  |                                                                |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
-            Console.WriteLine("| Requête 2 | Modifier une réservation                                       |");
+            Console.WriteLine("| Requête 2 | Modifier les horaires d'ouverture                              |");
             Console.WriteLine("|  TAPEZ 2  |                                                                |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
-            Console.WriteLine("| Requête 3 | Annuler une réservation                                        |");
+            Console.WriteLine("| Requête 3 | Modifier les autres infos                                      |");
             Console.WriteLine("|  TAPEZ 3  |                                                                |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
             Console.WriteLine("|  Tapez 0  | Retourner au menu principal                                    |");
@@ -232,6 +232,36 @@ namespace Projet_2015
                 case 3:
                     break;
             }
-        }       
+        }
+
+        public static int gestErreurEntier(int a)
+        {
+            try
+            {
+                a = int.Parse(Console.ReadLine());
+                return a;
+            }
+            catch
+            {
+                Console.WriteLine("Veuillez entrer un entier valide.");
+                gestErreurEntier(a);
+                return a;
+            }
+        }
+        public static double gestErreurDouble(double a)
+        {
+            try
+            {
+                a = double.Parse(Console.ReadLine());
+                return a;
+            }
+            catch
+            {
+                Console.WriteLine("Veuillez entrer un entier valide.");
+                gestErreurDouble(a);
+                return a;
+            }
+        }
+
     }
 }

@@ -61,19 +61,19 @@ namespace Projet_2015
         public void demandeInfo()
         {
             Console.WriteLine("Combien y a-t-il de places en cuisine ?");
-            nomRestaurant = Console.ReadLine();
+            string NomRestaurant = Console.ReadLine();
             Console.WriteLine("Combien y a-t-il de places en cuisine ?");
-            gestErreurEntier(nbMaxCuisiniers);
+            int NbMaxCuisiniers = Program.gestErreurEntier(int.Parse(Console.ReadLine()));
             Console.WriteLine("Combien y a-t-il de places en tant que serveur ?");
-            gestErreurEntier(nbMaxServeurs);
+            int NbMaxServeurs = Program.gestErreurEntier(int.Parse(Console.ReadLine()));
             Console.WriteLine("Quel est le ratio Cuisiniers/Clients optimal ?");
-            gestErreurDouble(ratioCuisiniersClients);
+            double RatioCuisiniersClients = Program.gestErreurDouble(double.Parse(Console.ReadLine()));
             Console.WriteLine("Quel est le ratio Serveurs/Clients optimal ?");
-            gestErreurDouble(ratioServeursClients);
+            double RatioServeursClients = Program.gestErreurDouble(double.Parse(Console.ReadLine()));
             Console.WriteLine("Combien y a-t-il de places au bar ?");
-            gestErreurEntier(nbMaxClients);
-            Console.WriteLine("Combien y a-t-il de tables ?");
-            gestErreurEntier(listeTables.Capacity);
+            int barTables = Program.gestErreurEntier(int.Parse(Console.ReadLine()));
+            Console.WriteLine("Combien y a-t-il de tables autres qu'au bar ?");
+            int TablesPasBar = Program.gestErreurEntier(int.Parse(Console.ReadLine()));
             listeTables.Capacity += nbMaxClients;
             for(int i=0; i<listeTables.Capacity; i++)
             {
@@ -97,32 +97,6 @@ namespace Projet_2015
 
             return ch; 
             
-        }
-
-
-        public static void gestErreurEntier(int a)
-        {
-            try
-            {
-                a = int.Parse(Console.ReadLine());
-            }
-            catch
-            {
-                Console.WriteLine("Veuillez entrer un entier valide.");
-                gestErreurEntier(a);
-            }
-        }
-        public static void gestErreurDouble(double a)
-        {
-            try
-            {
-                a = double.Parse(Console.ReadLine());
-            }
-            catch
-            {
-                Console.WriteLine("Veuillez entrer un entier valide.");
-                gestErreurDouble(a);
-            }
         }
 
         public void EnregistrerResto()

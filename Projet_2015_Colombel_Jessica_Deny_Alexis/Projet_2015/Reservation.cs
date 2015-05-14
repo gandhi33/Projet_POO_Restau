@@ -62,6 +62,99 @@ namespace Projet_2015
             }
         }
 
+        public Reservation(Restaurant Restaurant, Service Service, string NomClient,
+            string NumTelephone, DateTime JourResa, DateTime HoraireDebutResa, DateTime HoraireFinResa,
+            int NbConvives, Formule FormuleRetenue, List<Table> TableAffectee)
+        {
+            restaurant = Restaurant;
+            service = Service;
+            nomClient = NomClient;
+            numTelephone = NumTelephone;
+            jourResa = JourResa;
+            horaireDebutResa = HoraireDebutResa;
+            horaireFinResa = HoraireFinResa;
+            nbConvives = NbConvives;
+            formuleRetenue = FormuleRetenue;
+            tableAffectee = TableAffectee;
+        }
+
+        // Demande des informations nécessaires à la création d'une nouvelle réservation.
+        public void ajoutReservation(Restaurant R)
+        {
+            Reservation a;
+            Console.WriteLine("Nom du Client ?");
+            string NomClient = Console.ReadLine();
+            Console.WriteLine("Prénom du Client ?");
+            NomClient += Console.ReadLine();
+            Console.WriteLine("Date de Réservation (yyyy,mm,dd) ?");
+            DateTime JourResa = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Heure de réservation (hh,mm,ss) ?");
+            DateTime HDR = DateTime.Parse(Console.ReadLine());           
+            Service Service = R.trouveService(JourResa);
+            Console.WriteLine("Nombre de convives ?");
+            int NbConvives = gestErreurEntier(int.Parse(Console.ReadLine()));    
+            // Récupération des différentes formules du restaurant
+            Console.WriteLine("Quelle Formule (entrez le numéro) ?");
+            for (int i=0; i < R.listeFormules.Count; i++)
+            {
+                Console.WriteLine(""+i+" : "+R.listeFormules[i]);
+            }
+            int frappe;
+            do
+            {
+                Console.WriteLine("Entrez le numéro de la formule souhaitée s'il vous plait.");
+                frappe = gestErreurEntier(int.Parse(Console.ReadLine()));
+            }
+            while (frappe < 0 && frappe > (R.listeFormules.Count - 1));
+            Formule FormRet = R.listeFormules[frappe];
+            DateTime HFR = horaireDebutResa + formuleRetenue.dureeConsommation;
+            List<Table> TableAffectee = new List<Table>();
+            string NumTel;
+            // Si la réservation concerne une commande à emporter, pas besoin de table.
+            if (FormRet.surPlace == false)
+            {
+                NumTel = Console.ReadLine();
+                a = new Reservation(R, Service, NomClient, NumTel, JourResa, HDR, HFR, NbConvives, FormRet, TableAffectee);
+            }
+            else
+            {
+            // Tente de trouver une table adéquate en jumelant ou non, sinon refus de la réservation.
+                try
+                {
+                    TableAffectee = trouveTables(R, NbConvives, Service, HDR, HFR);
+                }
+                catch
+                {
+            // Reconduction quand la réservation est refusée.
+                    Console.WriteLine("La réservation est impossible, aucune table disponible pour ce nombre de convives !");
+                    Console.WriteLine("0 : Annulez ?");
+                    Console.WriteLine("1 : Autre réservation ?");
+                    string frappe2;
+                    do
+                    {
+                        Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
+                        frappe2 = Console.ReadLine();
+                    }
+                    while (frappe2 != "0" && frappe2 != "1");
+                    int choix = int.Parse(frappe2);
+                    switch (choix)
+                    {
+                        case 0:
+                            Program.GererReservation();
+                            break;
+                        case 1:
+                            ajoutReservation(R);
+                            break;
+                    }
+                }
+            }
+            Console.WriteLine("Numéro de téléphone ?");
+            NumTel = Console.ReadLine();
+            // Si tout est bon, création de la réservation
+            a = new Reservation(R, Service, NomClient, NumTel, JourResa, HDR, HFR, NbConvives, FormRet, TableAffectee);
+        }
+
+
         public static int gestErreurEntier(int a)
         {
             try
@@ -90,22 +183,14 @@ namespace Projet_2015
                 return a;
             }
         }
-        public void ajoutReservation()
-        {
-            Console.WriteLine("Nom du Client?");
-            nomClient = Console.ReadLine();
-            Console.WriteLine("Prénom du Client?");
-            nomClient += Console.ReadLine();
-            
-        }
-
+        
         public void EnregistrerResa()
         {
-            XmlDocument docRestau = new XmlDocument();
-            docRestau.Load("docRestau.xml");
+            XDocument docRestau = new XDocument();
+            docRestau = XDocument.Load("docRestau.xml");
 
-            docRestau.Element("Reservations").Add(new XElement("Reservation", new XAttribute("IdReservation", nomClient), 
-                new XElement("NumTelephone",numTelephone), new XElement("JourResa",jourResa), new XElement("HoraireDebut",horaireDebutResa), new XElement("",))); 
+            //docRestau.Element("Reservations").Add(new XElement("Reservation", new XAttribute("IdReservation", nomClient), 
+              //  new XElement("NumTelephone",numTelephone), new XElement("JourResa",jourResa), new XElement("HoraireDebut",horaireDebutResa), new XElement("",))); 
 
             // Finir
         }
@@ -226,31 +311,6 @@ namespace Projet_2015
             return res;
         }    
 
-        public Reservation(Restaurant Restaurant, DateTime JourResa, DateTime HoraireDebutResa, string NomClient,
-            string NumTelephone, int NbConvives, Formule FormuleRetenue)
-        {
-            restaurant = Restaurant;
-            jourResa = JourResa;
-            horaireDebutResa = HoraireDebutResa;
-            formuleRetenue = FormuleRetenue;
-            DateTime HoraireFinResa = horaireDebutResa + formuleRetenue.dureeConsommation;
-            horaireFinResa = HoraireFinResa;
-            nbConvives = NbConvives;
-            nomClient = NomClient;
-            numTelephone = NumTelephone;
-            Service Service = Restaurant.trouveService(JourResa);
-            service = Service;
-            try
-            {
-                tableAffectee = trouveTables(Restaurant, NbConvives, Service, HoraireDebutResa, HoraireFinResa);
-            }
-            catch
-            {
-                Console.WriteLine("La réservation est impossible, aucune table disponible pour ce nombre de convives !");
-                // Je veux sortir du constructeur sans créer la réservation... Comment faire ??
-                // Tu peux créer la réservation et ne pas l'enregistrer dans le XML.
-                // De toute façon, puisqu'aucune table n'a été réservé, ça ne pose pas de problème.
-            }
-        }
+        
     }
 }
