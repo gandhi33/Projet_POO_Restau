@@ -12,7 +12,20 @@ namespace Projet_2015
 
         static void Main(string[] args)
         {
-            //Menu(R);
+
+            Restaurant R = new Restaurant();
+            Service S = new Service(); 
+
+            // Chargement des XML :
+            XDocument docInfo = new XDocument();
+            docInfo = XDocument.Load("docInfo.xml");
+
+            R = ChargerRestaurant(docInfo);
+            ChargerFormules(R, docInfo);
+            ChargerTables(R, docInfo);
+            ChargerDocResto(R); 
+            
+            Menu(R);
 
             return;
         }
@@ -333,11 +346,36 @@ namespace Projet_2015
             Console.ReadLine();
             GererTable(R);
         }
-
-        public static XDocument ChargerFormules(Restaurant R)
+        
+        public static Restaurant ChargerRestaurant(XDocument docInfo)
         {
-            XDocument docInfo = new XDocument();
-            docInfo = XDocument.Load("docInfo.xml");
+            Restaurant Resto = new Restaurant(); 
+
+            var restaurants = from restaurant in docInfo.Descendants("Restaurants") select restaurant;
+            foreach (XElement r in restaurants.Elements("Restaurant"))
+            {
+                string NomRestaurant = r.Element("IdRestaurant").Value;
+                int NombreMaxClients = int.Parse(r.Element("NombreMaxClients").Value);
+                int NombreMaxCuisiniers = int.Parse(r.Element("NombreMaxCuisiniers").Value);
+                int NombreMaxServeurs = int.Parse(r.Element("NombreMaxServeurs").Value);
+                double RatioCuisiniersClients = double.Parse(r.Element("RatioCuisiniersClients").Value);
+                double RatioServeursClients = double.Parse(r.Element("RatioServeursClients").Value);
+
+                List<ServiceParJour> listeServicesParJour = new List<ServiceParJour>(); 
+                List<Table> listeTables = new List<Table>(); 
+                List<Formule> listeFormules = new List<Formule>();
+
+                Restaurant R = new Restaurant(NomRestaurant, listeServicesParJour, NombreMaxClients, NombreMaxCuisiniers, NombreMaxServeurs,
+                    RatioCuisiniersClients, RatioServeursClients, listeTables, listeFormules);
+
+                return R;
+            }
+            return Resto; 
+             
+        }
+                       
+        public static void ChargerFormules(Restaurant R, XDocument docInfo)
+        {           
 
             var formules = from formule in docInfo.Descendants("Formules") select formule;
             foreach (XElement f in formules.Elements("Formule"))
@@ -349,28 +387,8 @@ namespace Projet_2015
 
                 R.listeFormules.Add(new Formule(nomFormule, dureePreparation, dureeConsommation, surPlace));
             }
-
-            return docInfo; 
-
-
-        }
-
-        public static void ChargerRestaurant(Restaurant R, Restaurant docInfo)
-        {
-            var restaurants = from restaurant in docInfo.Descendants("Restaurants") select restaurant;
-            foreach (XElement r in restaurants.Elements("Restaurant"))
-            {
-                string NomRestaurant = r.Element("IdRestaurant").Value;
-                int NombreMaxClients = int.Parse(r.Element("NombreMaxClients").Value);
-                int NombreMaxCuisiniers = int.Parse(r.Element("NombreMaxCuisiniers").Value);
-                int NombreMaxServeurs = int.Parse(r.Element("NombreMaxServeurs").Value);
-                double RatioCuisiniersClients = double.Parse(r.Element("RatioCuisiniersClients").Value);
-                double RatioServeursClients = double.Parse(r.Element("RatioServeursClients").Value);
-
-            }
-
-            // Il n'y en a qu'un seul !!! 
-        }
+ 
+        }       
 
         public static void ChargerTables(Restaurant R, XDocument docInfo)
         {
@@ -378,7 +396,24 @@ namespace Projet_2015
             foreach (XElement t in tables.Elements("Table"))
             {
                 int NumeroTable = int.Parse(t.Element("IdTable").Value);
-                Forme FormeTable = Enum.Parse(TypeOf(t.Element("Forme").Value);
+                string a = t.Element("forme").Value;
+                Forme FormeTable;
+                if (a == "bar")
+                {
+                    FormeTable = Forme.bar;
+                }
+                else if (a == "carree")
+                {
+                    FormeTable = Forme.carree;
+                }
+                else if (a == "rectangulaire")
+                {
+                    FormeTable = Forme.rectangulaire;
+                }
+                else
+                {
+                    FormeTable = Forme.ronde;
+                }
                 int NombreMaxPlaces = int.Parse(t.Element("NombreMaxPlace").Value);
                 int NombrePlaceSiJumelable = int.Parse(t.Element("NombrePlaceSiJum").Value);
                 bool Jumelable = bool.Parse(t.Element("jumelable").Value);
@@ -392,29 +427,61 @@ namespace Projet_2015
             XDocument docRestau = new XDocument();
             docRestau = XDocument.Load("docRestau.xml");
 
+            List<Table> tableResa = new List<Table>();
+            int j = 0; 
+
             var services = from service in docRestau.Descendants("Services") select service;
             foreach (XElement s in services.Elements("Service"))
-            {
-                DateTime HoraireOpenEmployesMidi = DateTime.Parse(s.Element("HoraireOpenEmployesMidi").Value);
-                DateTime HoraireCloseEmployesMidi = DateTime.Parse(s.Element("HoraireCloseEmployesMidi").Value);
-                DateTime HoraireOpenClientsMidi = DateTime.Parse(s.Element("HoraireOpenClientsMidi").Value);
-                DateTime HoraireCloseClientsMidi = DateTime.Parse(s.Element("HoraireCloseClientsMidi").Value);
+            {              
+                TimeSpan HoraireOpenEmployesMidi = TimeSpan.Parse(s.Element("HoraireOpenEmployesMidi").Value);
+                TimeSpan HoraireCloseEmployesMidi = TimeSpan.Parse(s.Element("HoraireCloseEmployesMidi").Value);
+                TimeSpan HoraireOpenClientsMidi = TimeSpan.Parse(s.Element("HoraireOpenClientsMidi").Value);
+                TimeSpan HoraireCloseClientsMidi = TimeSpan.Parse(s.Element("HoraireCloseClientsMidi").Value);
 
-                DateTime HoraireOpenEmployesSoir = DateTime.Parse(s.Element("HoraireOpenEmployesSoir").Value);
-                DateTime HoraireCloseEmployesSoir = DateTime.Parse(s.Element("HoraireCloseEmployesSoir").Value);
-                DateTime HoraireOpenClientsSoir = DateTime.Parse(s.Element("HoraireOpenClientsSoir").Value);
-                DateTime HoraireCloseClientsSoir = DateTime.Parse(s.Element("HoraireCloseClientsSoir").Value);
+                TimeSpan HoraireOpenEmployesSoir = TimeSpan.Parse(s.Element("HoraireOpenEmployesSoir").Value);
+                TimeSpan HoraireCloseEmployesSoir = TimeSpan.Parse(s.Element("HoraireCloseEmployesSoir").Value);
+                TimeSpan HoraireOpenClientsSoir = TimeSpan.Parse(s.Element("HoraireOpenClientsSoir").Value);
+                TimeSpan HoraireCloseClientsSoir = TimeSpan.Parse(s.Element("HoraireCloseClientsSoir").Value);
 
-                DateTime Jour = DateTime.Parse(s.Element("jour").Value);
+                DateTime Jour = DateTime.Parse(s.Element("jour").Value);                
 
-                R.listeServices.Add(new Service(HoraireOpenEmployesMidi, HoraireCloseEmployesMidi, HoraireOpenClientsMidi, 
-                    HoraireCloseClientsMidi, HoraireOpenEmployesSoir, HoraireCloseEmployesSoir, HoraireOpenClientsSoir, HoraireCloseClientsSoir)); 
+                R.listeServicesParJour.Add(new ServiceParJour(HoraireOpenEmployesMidi, HoraireCloseEmployesMidi, HoraireOpenClientsMidi,
+                    HoraireCloseClientsMidi, HoraireOpenEmployesSoir, HoraireCloseEmployesSoir, HoraireOpenClientsSoir, HoraireCloseClientsSoir, Jour, ListeResa));
 
+                var tables = from table in docRestau.Descendants("Services").Descendants("Reservations").Descendants("ListeTable") select table; 
+                foreach (XElement t in tables.Elements("Table"))
+                {
+                    int numTable = int.Parse(t.Element("IdTable").Value); 
+                }
+                
+                var resas = from resa 
+                            in docRestau.Descendants("Services").Descendants("Reservations") // YAHOUUUUU
+                            select resa; 
+                foreach (XElement r in resas.Elements("Reservation"))
+                { 
+                    string nomClient = r.Element("IdReservation").Value; 
+                    string numTelephone = r.Element("NumTelephone").Value; 
+                    TimeSpan jourResa = TimeSpan.Parse(r.Element("JourResa").Value);
+                    TimeSpan horaireDebutResa = TimeSpan.Parse(r.Element("HoraireDebut").Value);
+                    TimeSpan horaireFinResa = TimeSpan.Parse(r.Element("HoraireFin").Value);
+                    int nbConvives = int.Parse(r.Element("NombreConvives").Value);
+                    string nomFormuleRetenue = r.Element("FormuleRetenue").Value; 
+                    int i=0; 
+                    while (nomFormuleRetenue != R.listeFormules[i].nomFormule)
+                    {
+                        i++; 
+                    }
+                    Formule FormuleRetenue = R.listeFormules[i];
+                    Service Service = R.listeServicesParJour[j]; 
+
+                }
+
+                j++;    
             }
 
             
 
-        }
+        } // A FINIR
     }
 
 }

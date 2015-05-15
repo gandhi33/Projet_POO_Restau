@@ -8,20 +8,18 @@ namespace Projet_2015
 {
     class Service
     {
-        public DateTime horaireOpenEmployesMidi { get; protected set; }
-        public DateTime horaireCloseEmployesMidi { get; protected set; }
-        public DateTime horaireOpenClientsMidi { get; protected set; }
-        public DateTime horaireCloseClientsMidi { get; protected set; }
+        public TimeSpan horaireOpenEmployesMidi { get; protected set; }
+        public TimeSpan horaireCloseEmployesMidi { get; protected set; }
+        public TimeSpan horaireOpenClientsMidi { get; protected set; }
+        public TimeSpan horaireCloseClientsMidi { get; protected set; }
 
-        public DateTime horaireOpenEmployesSoir { get; protected set; }
-        public DateTime horaireCloseEmployesSoir { get; protected set; }
-        public DateTime horaireOpenClientsSoir { get; protected set; }
-        public DateTime horaireCloseClientsSoir { get; protected set; }
+        public TimeSpan horaireOpenEmployesSoir { get; protected set; }
+        public TimeSpan horaireCloseEmployesSoir { get; protected set; }
+        public TimeSpan horaireOpenClientsSoir { get; protected set; }
+        public TimeSpan horaireCloseClientsSoir { get; protected set; }
+        
 
-        public DateTime jour { get; protected set; }
-        public List<Reservation> reservations { get; protected set; }
-
-        public Service(DateTime HOEM, DateTime HCEM, DateTime HOCM, DateTime HCCM, DateTime HOES, DateTime HCES, DateTime HOCS, DateTime HCCS)
+        public Service(TimeSpan HOEM, TimeSpan HCEM, TimeSpan HOCM, TimeSpan HCCM, TimeSpan HOES, TimeSpan HCES, TimeSpan HOCS, TimeSpan HCCS)
         {
             horaireOpenEmployesMidi = HOEM;
             horaireCloseEmployesMidi = HCEM;
@@ -34,11 +32,17 @@ namespace Projet_2015
             horaireCloseClientsSoir = HCCS;
         }
 
-        public Service(DateTime HOEM, DateTime HCEM, DateTime HOCM, DateTime HCCM, DateTime HOES, DateTime HCES, DateTime HOCS, DateTime HCCS,
-            DateTime J, List<Reservation> Resas):this(HOEM,HCEM,HOCM,HCCM,HOES,HCES,HOCS,HCCS)
+        public Service()
         {
-            jour = J;
-            reservations = Resas;
+            horaireOpenEmployesMidi = new TimeSpan(10,30,00);
+            horaireCloseEmployesMidi = new TimeSpan(14, 30, 00);
+            horaireOpenClientsMidi = new TimeSpan(11, 30, 00);
+            horaireCloseClientsMidi = new TimeSpan(13,30,00);
+
+            horaireOpenEmployesSoir = new TimeSpan(18, 00, 00);
+            horaireCloseEmployesSoir = new TimeSpan(23, 30, 00);
+            horaireOpenClientsSoir = new TimeSpan(19, 00, 00);
+            horaireCloseClientsSoir = new TimeSpan(23, 00, 00); 
         }
 
         public void AjouteService()

@@ -1,45 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Projet_2015.Formule" Collapsed="true">
-    <Position X="2" Y="0.5" Width="1.5" />
+    <Position X="9" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAEAAEAAAABAAAABAAAAAAAAAAEA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAAAEAAEAAAAAAAAABAAAgAAAAAAEA=</HashCode>
       <FileName>Formule.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_2015.Reservation" Collapsed="true">
-    <Position X="3.75" Y="0.5" Width="1.5" />
+    <Position X="2.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAUCAIABEAAAAAAAggAAQ4AAAAEAAAAEBAAACAAAA=</HashCode>
+      <HashCode>gAAAUCAIAAEAAAAAAAggAAQ4AAAAAAAAAEBAAACAAAA=</HashCode>
       <FileName>Reservation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Projet_2015.Restaurant" Collapsed="true">
-    <Position X="5.5" Y="0.5" Width="1.5" />
+  <Class Name="Projet_2015.Restaurant">
+    <Position X="5.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>QEBiAAAACBAAAAAEAAAAACAAAgAAEABAAEBAAAAABAg=</HashCode>
+      <HashCode>AFhiAIAACBCAAAAFABAACCBAAhAABABAAERAAACABAg=</HashCode>
       <FileName>Restaurant.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_2015.Service" Collapsed="true">
     <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAAAAABAAAAAAAAAABKAAAAAAEAAQAAAEAABAAA=</HashCode>
+      <HashCode>AQAAAAAAAABAAAAAAAAAABIAAAAAAEAAQAAAEAABAAA=</HashCode>
       <FileName>Service.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_2015.Table" Collapsed="true">
-    <Position X="5.75" Y="1.5" Width="1.5" />
+    <Position X="9" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAACAQABASAAAAAAABAAQAABAAEAAAAAAAAQAAAAA=</HashCode>
+      <HashCode>AAEgACAQAAASAAAAAAABAARAAAAAAAAAAAAAAQAAAAA=</HashCode>
       <FileName>Table.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Projet_2015.TableCarre" Collapsed="true">
-    <Position X="8.5" Y="1" Width="1.5" />
+  <Class Name="Projet_2015.ServiceParJour" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>TableCarre.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABCAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServiceParJour.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

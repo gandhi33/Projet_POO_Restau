@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Services>
+    <Service>
         <HoraireOpenEmployesMidi></HoraireOpenEmployesMidi>
         <HoraireCloseEmployesMidi></HoraireCloseEmployesMidi>
         <HoraireOpenClientsMidi></HoraireOpenClientsMidi>
@@ -15,8 +16,7 @@
                 <NumTelephone></NumTelephone>
                 <JourResa></JourResa>
                 <HoraireDebut></HoraireDebut>
-                <HoraireFin></HoraireFin>   
-                <Service></Service> 
+                <HoraireFin></HoraireFin>  
                 <NombreConvives></NombreConvives>
                 <FormuleRetenue></FormuleRetenue>
                 <ListeTable>
@@ -26,4 +26,5 @@
                 </ListeTable> 
             </Reservation>
         </Réservations>
+    </Service>
 </Services>

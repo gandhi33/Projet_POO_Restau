@@ -23,43 +23,7 @@ namespace Projet_2015
             dureeConsommation = Consommation;
             surPlace = SurPlace; 
         }
-
-        public void AjoutFormule()
-        {
-            string Nom;
-            TimeSpan Preparation, Consommation, zero;
-            bool surPlace;
-            zero = new TimeSpan(0, 0, 0);
-
-            Console.WriteLine("Nom de la formule : ");
-            Nom = Console.ReadLine();
-            Console.WriteLine("");
-            Console.WriteLine("Durée de préparation : ");
-            Preparation = TimeSpan.Parse(Console.ReadLine());
-            Console.WriteLine("");
-            Console.WriteLine("Duréee de consommation : ");
-            Consommation = TimeSpan.Parse(Console.ReadLine());
-            Console.WriteLine("");
-            
-            if (Consommation == zero)
-            {
-                surPlace = false;
-            }
-            else
-            {
-                surPlace = true;
-            }
-
-            Formule Nom = new Formule(Preparation, Consommation, surPlace); // ZUT ZUT ZUT
-
-            XDocument docInfo = new XDocument();
-            docInfo.Load("docInfo.xml");
-
-            XElement elem = docInfo.Element("Formules").Add(new XElement("Formule", new XAttribute("IdFormule", Nom), 
-                new XElement("DureePreparation", Preparation), new XElement("DureeConsommation",Consommation), new XElement("SurPlace",surPlace))); 
-            
-        }  // A finir
-
+                
         public void SupprimeFormule()
         {
             // huhu

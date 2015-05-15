@@ -12,7 +12,7 @@ namespace Projet_2015
     {
         public string nomRestaurant { get; private set; }
         public Service service { get; protected set; }                     // Avoir juste les horaires pour créer des services dans la liste qui suit plus facilement
-        public List<Service> listeServices { get; protected set; }
+        public List<ServiceParJour> listeServicesParJour{ get; protected set; }
         public int nbMaxClients { get; private set; }
         public int nbMaxCuisiniers { get; private set; }
         public int nbMaxServeurs { get; private set; }
@@ -21,39 +21,40 @@ namespace Projet_2015
         public List<Table> listeTables {get; private set; }
         public List<Formule> listeFormules { get; private set; }
 
-        public Restaurant(string NomRestaurant, Service Service, List<Service> ListeServices,
+        public Restaurant(string NomRestaurant, List<ServiceParJour> ListeServicesParJour,
             int NbMaxClients, int NbMaxCuisiniers, int NbMaxServeurs, double RatioCuisiniersClients,
-            double RatioServeursClients, List<Table> ListeTables)
+            double RatioServeursClients, List<Table> ListeTables, List<Formule> ListeFormules)
         {
             nomRestaurant = NomRestaurant;
-            service = Service;
-            listeServices = ListeServices;
+            listeServicesParJour = ListeServicesParJour;
             nbMaxClients = NbMaxClients;
             nbMaxCuisiniers = NbMaxCuisiniers;
             nbMaxServeurs = NbMaxServeurs;
             ratioCuisiniersClients = RatioCuisiniersClients;
             ratioServeursClients = RatioServeursClients;
             listeTables = ListeTables;
+            listeFormules = ListeFormules; 
         }
 
-        // constructeur vide obligatoire pour la sérialisation
         public Restaurant()
-        {           
+        {            
         }
 
-        public Service trouveService(DateTime J)
+        
+        public ServiceParJour trouveService(DateTime J)
         {
             int i = 0;
-            while (i < listeServices.Count)
-                if (listeServices[i].jour == J)
+            while (i < listeServicesParJour.Count)
+                if (listeServicesParJour[i].jour == J)
                 {
-                    return listeServices[i];
+                    return listeServicesParJour[i];
                 }
-            listeServices.Add(new Service(service.horaireOpenEmployesMidi, service.horaireCloseEmployesMidi,
+            
+            listeServicesParJour.Add(new ServiceParJour(service.horaireOpenEmployesMidi, service.horaireCloseEmployesMidi,
                 service.horaireOpenClientsMidi, service.horaireCloseClientsMidi, service.horaireOpenEmployesSoir,
                 service.horaireCloseEmployesSoir, service.horaireOpenClientsSoir, service.horaireCloseClientsMidi,
                 J, new List<Reservation>()));
-            return listeServices[listeServices.Count - 1];
+            return listeServicesParJour[listeServicesParJour.Count - 1];
         }
 
         // Demande des informations nécessaires à la création d'une nouvelle réservation.
@@ -68,7 +69,7 @@ namespace Projet_2015
             DateTime JourResa = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Heure de réservation (hh,mm,ss) ?");
             DateTime HDR = DateTime.Parse(Console.ReadLine());
-            Service Service = trouveService(JourResa);
+            ServiceParJour Service = trouveService(JourResa);
             Console.WriteLine("Nombre de convives ?");
             int NbConvives = Program.gestErreurEntier();
             // Récupération des différentes formules du restaurant
@@ -246,7 +247,7 @@ namespace Projet_2015
             string nom = Console.ReadLine();
             Console.WriteLine("Quel est le prénom du client ?");
             nom += " " + Console.ReadLine();
-            Service Service = trouveService(Date);
+            ServiceParJour Service = trouveService(Date);
             int rang;
             Reservation Reservation = trouveReservation(Service, nom, out rang);
             if (Reservation == null)
@@ -323,7 +324,7 @@ namespace Projet_2015
             string nom = Console.ReadLine();
             Console.WriteLine("Quel est le prénom du client ?");
             nom += " " + Console.ReadLine();
-            Service Service = trouveService(Date);
+            ServiceParJour Service = trouveService(Date);
             int rang;
             Reservation Reservation = trouveReservation(Service, nom, out rang);
             if (Reservation == null)
@@ -354,7 +355,7 @@ namespace Projet_2015
             }
         }
 
-        public Reservation trouveReservation(Service Service, string NomClient, out int rangResa)
+        public Reservation trouveReservation(ServiceParJour Service, string NomClient, out int rangResa)
         {
             for (int i = 0; i < Service.reservations.Count; i++)
             {
@@ -447,7 +448,7 @@ namespace Projet_2015
                 surPlace = true;
             }
 
-            listeFormules.Add(new Formule(Preparation, Consommation, surPlace));
+            listeFormules.Add(new Formule(Nom, Preparation, Consommation, surPlace));
             
             XDocument docInfo = new XDocument();
             docInfo = XDocument.Load("docInfo.xml");

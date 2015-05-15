@@ -11,7 +11,7 @@ namespace Projet_2015
     class Reservation
     {
         public Restaurant restaurant { get; private set; }
-        public Service service { get; private set; }
+        public ServiceParJour service { get; private set; }
         public string nomClient { get; private set; }
         public string numTelephone { get; private set; }
         public DateTime jourResa { get; private set; }
@@ -21,11 +21,22 @@ namespace Projet_2015
         public Formule formuleRetenue { get; private set; }
         public List<Table> tableAffectee { get; private set; }
 
-        
-        public Reservation(string Nom, string Numero, DateTime Jour, DateTime HeureDebut, DateTime HeureFin, int Convive, Formule formule, List<Table> table)
+        public Reservation(Restaurant Restaurant, ServiceParJour ServiceParJour, string NomClient,
+            string NumTelephone, DateTime JourResa, DateTime HoraireDebutResa, DateTime HoraireFinResa,
+            int NbConvives, Formule FormuleRetenue, List<Table> TableAffectee)
         {
- 
+            restaurant = Restaurant;
+            service = ServiceParJour;
+            nomClient = NomClient;
+            numTelephone = NumTelephone;
+            jourResa = JourResa;
+            horaireDebutResa = HoraireDebutResa;
+            horaireFinResa = HoraireFinResa;
+            nbConvives = NbConvives;
+            formuleRetenue = FormuleRetenue;
+            tableAffectee = TableAffectee;
         }
+      
 // A faire
         public int comptePlaces(List<Table> T)
         {
@@ -60,22 +71,6 @@ namespace Projet_2015
             }
         }
 
-        public Reservation(Restaurant Restaurant, Service Service, string NomClient,
-            string NumTelephone, DateTime JourResa, DateTime HoraireDebutResa, DateTime HoraireFinResa,
-            int NbConvives, Formule FormuleRetenue, List<Table> TableAffectee)
-        {
-            restaurant = Restaurant;
-            service = Service;
-            nomClient = NomClient;
-            numTelephone = NumTelephone;
-            jourResa = JourResa;
-            horaireDebutResa = HoraireDebutResa;
-            horaireFinResa = HoraireFinResa;
-            nbConvives = NbConvives;
-            formuleRetenue = FormuleRetenue;
-            tableAffectee = TableAffectee;
-        }
-
         // Demande des informations nécessaires à la création d'une nouvelle réservation.
         public void ajoutReservation(Restaurant R)
         {
@@ -88,7 +83,7 @@ namespace Projet_2015
             DateTime JourResa = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Heure de réservation (hh,mm,ss) ?");
             DateTime HDR = DateTime.Parse(Console.ReadLine());           
-            Service Service = R.trouveService(JourResa);
+            ServiceParJour ServiceParJour = R.trouveService(JourResa);
             Console.WriteLine("Nombre de convives ?");
             int NbConvives = Program.gestErreurEntier();    
             // Récupération des différentes formules du restaurant
@@ -112,14 +107,14 @@ namespace Projet_2015
             if (FormRet.surPlace == false)
             {
                 NumTel = Console.ReadLine();
-                a = new Reservation(R, Service, NomClient, NumTel, JourResa, HDR, HFR, NbConvives, FormRet, TableAffectee);
+                a = new Reservation(R, ServiceParJour, NomClient, NumTel, JourResa, HDR, HFR, NbConvives, FormRet, TableAffectee);
             }
             else
             {
             // Tente de trouver une table adéquate en jumelant ou non, sinon refus de la réservation.
                 try
                 {
-                    TableAffectee = trouveTables(R, NbConvives, Service, HDR, HFR);
+                    TableAffectee = trouveTables(R, NbConvives, ServiceParJour, HDR, HFR);
                 }
                 catch
                 {
@@ -149,7 +144,7 @@ namespace Projet_2015
             Console.WriteLine("Numéro de téléphone ?");
             NumTel = Console.ReadLine();
             // Si tout est bon, création de la réservation
-            a = new Reservation(R, Service, NomClient, NumTel, JourResa, HDR, HFR, NbConvives, FormRet, TableAffectee);
+            a = new Reservation(R, ServiceParJour, NomClient, NumTel, JourResa, HDR, HFR, NbConvives, FormRet, TableAffectee);
         }
 
         public void EnregistrerResa()
@@ -168,7 +163,7 @@ namespace Projet_2015
             // lalala
         } // A finir
 
-        public List<Table> trouveTables(Restaurant R, int NbC, Service S, DateTime HDR, DateTime HFR)
+        public List<Table> trouveTables(Restaurant R, int NbC, ServiceParJour S, DateTime HDR, DateTime HFR)
         {
 
             List<Table> res = new List<Table>(); // Tables qui seront affectées
