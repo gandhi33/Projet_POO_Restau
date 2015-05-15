@@ -456,6 +456,7 @@ namespace Projet_2015
                 
                 var resas = from resa 
                             in docRestau.Descendants("Services").Descendants("Reservations") // YAHOUUUUU
+                            //where ()
                             select resa; 
                 foreach (XElement r in resas.Elements("Reservation"))
                 { 

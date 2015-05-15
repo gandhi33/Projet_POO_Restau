@@ -185,6 +185,14 @@ namespace Projet_2015
 
         public void retireTable()
         {
+            Console.WriteLine("Vérifiez que la table n'est pas réservée pour un service à venir (0 : Non / 1 : Oui) ?");
+            bool a = Program.gestErreurBool();
+            if (a == true)
+            {
+                modifReservation();
+                Program.retourGesResas(this);
+            }
+
             Console.WriteLine("Quel est le numéro de la table à retirer ?");
             int NumTable = Program.gestErreurEntier();
             do
@@ -194,6 +202,7 @@ namespace Projet_2015
             }
             while (NumTable > listeTables.Count || NumTable == 0);
             listeTables.RemoveAt(NumTable - 1);
+            Table.nbTotalTables--;
             Console.WriteLine("Table retirée !");
         }
 
@@ -275,7 +284,7 @@ namespace Projet_2015
             {
                 Service.reservations.RemoveAt(rang);
                 Console.WriteLine("Début de la modification :");
-                Reservation.ajoutReservation(this);
+                ajoutReservation();
 
                 /*Console.WriteLine("+----------------------------------------------------------------------------+");
                 Console.WriteLine("|                              QUE MODIFIER ?                                |");
