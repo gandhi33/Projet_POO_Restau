@@ -20,6 +20,7 @@
     <Table>
         <Forme></Forme>
         <NombreMaxPlace></NombreMaxPlace>
+        <NombrePlaceSiJum></NombrePlaceSiJum>
         <jumelable></jumelable>
     </Table>
 </Tables>

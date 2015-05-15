@@ -21,14 +21,12 @@ namespace Projet_2015
         public Formule formuleRetenue { get; private set; }
         public List<Table> tableAffectee { get; private set; }
 
-        public Reservation()
-        { }
-
+        
         public Reservation(string Nom, string Numero, DateTime Jour, DateTime HeureDebut, DateTime HeureFin, int Convive, Formule formule, List<Table> table)
         {
  
         }
-
+// A faire
         public int comptePlaces(List<Table> T)
         {
             if (T.Count == 1)
@@ -163,12 +161,12 @@ namespace Projet_2015
               //  new XElement("NumTelephone",numTelephone), new XElement("JourResa",jourResa), new XElement("HoraireDebut",horaireDebutResa), new XElement("",))); 
 
             // Finir
-        }
+        } // A finir
 
         public void ModifierResa()
         {
             // lalala
-        }
+        } // A finir
 
         public List<Table> trouveTables(Restaurant R, int NbC, Service S, DateTime HDR, DateTime HFR)
         {
@@ -280,7 +278,6 @@ namespace Projet_2015
             res.Add(b);
             return res;
         }    
-
         
     }
 }

@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Reservations>
-    <Reservation>
-        <NumTelephone></NumTelephone>
-        <JourResa></JourResa>
-        <HoraireDebut></HoraireDebut>
-        <HoraireFin></HoraireFin>   
-        <Service></Service> 
-        <NombreConvives></NombreConvives>
-        <FormuleRetenue></FormuleRetenue>
-        <ListeTable>
-            <Table>
-                <NombrePlace></NombrePlace>
-            </Table>
-        </ListeTable>  
-        <Restaurant></Restaurant> 
-    </Reservation>     
-</Reservations>
 <Services>
-    <ServiceMidi>
-        <HoraireOpenEmployes></HoraireOpenEmployes>
-        <HoraireCloseEmployes></HoraireCloseEmployes>
-        <HoraireOpenClients></HoraireOpenClients>
-        <HoraireCloseClients></HoraireCloseClients>
-    </ServiceMidi>
-    <ServiceSoir>
-        <HoraireOpenEmployes></HoraireOpenEmployes>
-        <HoraireCloseEmployes></HoraireCloseEmployes>
-        <HoraireOpenClients></HoraireOpenClients>
-        <HoraireCloseClients></HoraireCloseClients>
-    </ServiceSoir>
+        <HoraireOpenEmployesMidi></HoraireOpenEmployesMidi>
+        <HoraireCloseEmployesMidi></HoraireCloseEmployesMidi>
+        <HoraireOpenClientsMidi></HoraireOpenClientsMidi>
+        <HoraireCloseClientsMidi></HoraireCloseClientsMidi>
+        <HoraireOpenEmployesSoir></HoraireOpenEmployesSoir>
+        <HoraireCloseEmployesSoir></HoraireCloseEmployesSoir>
+        <HoraireOpenClientsSoir></HoraireOpenClientsSoir>
+        <HoraireCloseClientsSoir></HoraireCloseClientsSoir>
+        <jour></jour>
+        <Réservations>
+            <Reservation>
+                <NumTelephone></NumTelephone>
+                <JourResa></JourResa>
+                <HoraireDebut></HoraireDebut>
+                <HoraireFin></HoraireFin>   
+                <Service></Service> 
+                <NombreConvives></NombreConvives>
+                <FormuleRetenue></FormuleRetenue>
+                <ListeTable>
+                    <Table>
+                        <NombrePlace></NombrePlace>
+                    </Table>
+                </ListeTable> 
+            </Reservation>
+        </Réservations>
 </Services>

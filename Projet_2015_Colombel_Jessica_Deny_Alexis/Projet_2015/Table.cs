@@ -84,12 +84,12 @@ namespace Projet_2015
         public void enregistrerTable()
         {
             // A faire
-        }
+        } // A faire
 
         public void supprimerTable()
         {
             // A faire
-        }
+        } // A faire
     }
    
 }

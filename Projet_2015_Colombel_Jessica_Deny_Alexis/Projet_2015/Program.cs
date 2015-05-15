@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Projet_2015
 {
@@ -332,5 +333,88 @@ namespace Projet_2015
             Console.ReadLine();
             GererTable(R);
         }
+
+        public static XDocument ChargerFormules(Restaurant R)
+        {
+            XDocument docInfo = new XDocument();
+            docInfo = XDocument.Load("docInfo.xml");
+
+            var formules = from formule in docInfo.Descendants("Formules") select formule;
+            foreach (XElement f in formules.Elements("Formule"))
+            {
+                string nomFormule = f.Element("NomFormule").Value;
+                TimeSpan dureePreparation = TimeSpan.Parse(f.Element("DureePreparation").Value);
+                TimeSpan dureeConsommation = TimeSpan.Parse(f.Element("DureeConsommation").Value);
+                bool surPlace = bool.Parse(f.Element("SurPlace").Value);
+
+                R.listeFormules.Add(new Formule(nomFormule, dureePreparation, dureeConsommation, surPlace));
+            }
+
+            return docInfo; 
+
+
+        }
+
+        public static void ChargerRestaurant(Restaurant R, Restaurant docInfo)
+        {
+            var restaurants = from restaurant in docInfo.Descendants("Restaurants") select restaurant;
+            foreach (XElement r in restaurants.Elements("Restaurant"))
+            {
+                string NomRestaurant = r.Element("IdRestaurant").Value;
+                int NombreMaxClients = int.Parse(r.Element("NombreMaxClients").Value);
+                int NombreMaxCuisiniers = int.Parse(r.Element("NombreMaxCuisiniers").Value);
+                int NombreMaxServeurs = int.Parse(r.Element("NombreMaxServeurs").Value);
+                double RatioCuisiniersClients = double.Parse(r.Element("RatioCuisiniersClients").Value);
+                double RatioServeursClients = double.Parse(r.Element("RatioServeursClients").Value);
+
+            }
+
+            // Il n'y en a qu'un seul !!! 
+        }
+
+        public static void ChargerTables(Restaurant R, XDocument docInfo)
+        {
+            var tables = from table in docInfo.Descendants("Tables") select table;
+            foreach (XElement t in tables.Elements("Table"))
+            {
+                int NumeroTable = int.Parse(t.Element("IdTable").Value);
+                Forme FormeTable = Enum.Parse(TypeOf(t.Element("Forme").Value);
+                int NombreMaxPlaces = int.Parse(t.Element("NombreMaxPlace").Value);
+                int NombrePlaceSiJumelable = int.Parse(t.Element("NombrePlaceSiJum").Value);
+                bool Jumelable = bool.Parse(t.Element("jumelable").Value);
+
+                R.listeTables.Add(new Table(R, FormeTable, NombreMaxPlaces, Jumelable, NombrePlaceSiJumelable));
+            }
+        }
+
+        public static void ChargerDocResto(Restaurant R)
+        {
+            XDocument docRestau = new XDocument();
+            docRestau = XDocument.Load("docRestau.xml");
+
+            var services = from service in docRestau.Descendants("Services") select service;
+            foreach (XElement s in services.Elements("Service"))
+            {
+                DateTime HoraireOpenEmployesMidi = DateTime.Parse(s.Element("HoraireOpenEmployesMidi").Value);
+                DateTime HoraireCloseEmployesMidi = DateTime.Parse(s.Element("HoraireCloseEmployesMidi").Value);
+                DateTime HoraireOpenClientsMidi = DateTime.Parse(s.Element("HoraireOpenClientsMidi").Value);
+                DateTime HoraireCloseClientsMidi = DateTime.Parse(s.Element("HoraireCloseClientsMidi").Value);
+
+                DateTime HoraireOpenEmployesSoir = DateTime.Parse(s.Element("HoraireOpenEmployesSoir").Value);
+                DateTime HoraireCloseEmployesSoir = DateTime.Parse(s.Element("HoraireCloseEmployesSoir").Value);
+                DateTime HoraireOpenClientsSoir = DateTime.Parse(s.Element("HoraireOpenClientsSoir").Value);
+                DateTime HoraireCloseClientsSoir = DateTime.Parse(s.Element("HoraireCloseClientsSoir").Value);
+
+                DateTime Jour = DateTime.Parse(s.Element("jour").Value);
+
+                R.listeServices.Add(new Service(HoraireOpenEmployesMidi, HoraireCloseEmployesMidi, HoraireOpenClientsMidi, 
+                    HoraireCloseClientsMidi, HoraireOpenEmployesSoir, HoraireCloseEmployesSoir, HoraireOpenClientsSoir, HoraireCloseClientsSoir)); 
+
+            }
+
+            
+
+        }
     }
+
 }

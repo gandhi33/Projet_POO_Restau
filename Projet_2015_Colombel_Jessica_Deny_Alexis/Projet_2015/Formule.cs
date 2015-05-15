@@ -16,14 +16,15 @@ namespace Projet_2015
         public TimeSpan dureeConsommation { get; protected set; }
         public bool surPlace { get; protected set; }
 
-        public Formule(TimeSpan Preparation, TimeSpan Consommation, bool SurPlace)
+        public Formule(string Nom,TimeSpan Preparation, TimeSpan Consommation, bool SurPlace)
         {
+            nomFormule = Nom;
             dureePreparation = Preparation;
             dureeConsommation = Consommation;
             surPlace = SurPlace; 
         }
 
-        /*public void AjoutFormule()
+        public void AjoutFormule()
         {
             string Nom;
             TimeSpan Preparation, Consommation, zero;
@@ -57,17 +58,17 @@ namespace Projet_2015
             XElement elem = docInfo.Element("Formules").Add(new XElement("Formule", new XAttribute("IdFormule", Nom), 
                 new XElement("DureePreparation", Preparation), new XElement("DureeConsommation",Consommation), new XElement("SurPlace",surPlace))); 
             
-        }*/
+        }  // A finir
 
         public void SupprimeFormule()
         {
             // huhu
-        }
+        } // A finir
 
         public void ModifierFormule()
         {
             // lala
-        }
+        } // A finir
 
     }
 }
