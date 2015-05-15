@@ -85,14 +85,14 @@ namespace Projet_2015
             Console.WriteLine("Nom du Client ?");
             string NomClient = Console.ReadLine();
             Console.WriteLine("Prénom du Client ?");
-            NomClient += Console.ReadLine();
+            NomClient += " " + Console.ReadLine();
             Console.WriteLine("Date de Réservation (yyyy,mm,dd) ?");
             DateTime JourResa = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Heure de réservation (hh,mm,ss) ?");
             DateTime HDR = DateTime.Parse(Console.ReadLine());           
             Service Service = R.trouveService(JourResa);
             Console.WriteLine("Nombre de convives ?");
-            int NbConvives = Program.gestErreurEntier(int.Parse(Console.ReadLine()));    
+            int NbConvives = Program.gestErreurEntier();    
             // Récupération des différentes formules du restaurant
             Console.WriteLine("Quelle Formule (entrez le numéro) ?");
             for (int i=0; i < R.listeFormules.Count; i++)
@@ -103,11 +103,11 @@ namespace Projet_2015
             do
             {
                 Console.WriteLine("Entrez le numéro de la formule souhaitée s'il vous plait.");
-                frappe = Program.gestErreurEntier(int.Parse(Console.ReadLine()));
+                frappe = Program.gestErreurEntier();
             }
             while (frappe < 0 && frappe > (R.listeFormules.Count - 1));
             Formule FormRet = R.listeFormules[frappe];
-            DateTime HFR = horaireDebutResa + formuleRetenue.dureeConsommation;
+            DateTime HFR = HDR + FormRet.dureeConsommation;
             List<Table> TableAffectee = new List<Table>();
             string NumTel;
             // Si la réservation concerne une commande à emporter, pas besoin de table.
@@ -140,7 +140,7 @@ namespace Projet_2015
                     switch (choix)
                     {
                         case 0:
-                            Program.GererReservation();
+                            Program.GererReservation(R);
                             break;
                         case 1:
                             ajoutReservation(R);
@@ -154,9 +154,6 @@ namespace Projet_2015
             a = new Reservation(R, Service, NomClient, NumTel, JourResa, HDR, HFR, NbConvives, FormRet, TableAffectee);
         }
 
-
-        
-        
         public void EnregistrerResa()
         {
             XDocument docRestau = new XDocument();

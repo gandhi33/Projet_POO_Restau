@@ -11,13 +11,13 @@ namespace Projet_2015
 
         static void Main(string[] args)
         {
-            Menu();
+            //Menu(R);
 
             return;
         }
                
 
-        public static void Menu()
+        public static void Menu(Restaurant R)
         {
             Console.WriteLine("Bienvenue Chez Kiki");
             Console.WriteLine();
@@ -41,15 +41,14 @@ namespace Projet_2015
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
             Console.WriteLine("|  Tapez 0  | Quitter                                                        |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
-            string frappe;
+            int frappe;
             do
             {
                 Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
-                frappe = Console.ReadLine();
+                frappe = gestErreurEntier();
             }
-            while (frappe != "0" && frappe != "1" && frappe != "2" && frappe != "3" && frappe != "4" && frappe != "5");
-            int choix = int.Parse(frappe);
-            switch(choix)
+            while (frappe < 0 && frappe > 5);
+            switch(frappe)
             {
                 case 0:
                     Console.WriteLine("Au revoir !");
@@ -57,24 +56,27 @@ namespace Projet_2015
                     Console.ReadLine();
                     break;
                 case 1:
-                    GererReservation();
+                    GererReservation(R);
                     break;
                 case 2:
-                    GererRestaurant();
+                    GererRestaurant(R);
                     break;
                 case 3:
-                    GererTable();
+                    GererTable(R);
                     break;
                 case 4:
-                    GererFormule();
+                    GererFormule(R);
                     break;
                 case 5:
-                    //Kiki.ToString();
+                    R.ToString();
+                    Console.WriteLine("Appuyez sur entrée pour revenir au menu principal...");
+                    Console.ReadLine();
+                    Menu(R);
                     break;
             }
         }
 
-        public static void GererReservation()
+        public static void GererReservation(Restaurant R)
         {
             Console.WriteLine("+----------------------------------------------------------------------------+");
             Console.WriteLine("|                         GESTION DES RESERVATIONS                           |");
@@ -90,74 +92,96 @@ namespace Projet_2015
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
             Console.WriteLine("|  Tapez 0  | Retourner au menu principal                                    |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
-            string frappe;
+            int frappe;
             do
             {
                 Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
-                frappe = Console.ReadLine();
+                frappe = gestErreurEntier();
             }
-            while (frappe != "0" && frappe != "1" && frappe != "2" && frappe != "3");
-            int choix = int.Parse(frappe);
-            switch (choix)
+            while (frappe < 0 && frappe > 3);
+            switch (frappe)
             {
                 case 0:
-                    Menu();
+                    Menu(R);
                     break;
                 case 1:
+                    R.ajoutReservation();
+                    retourGesResas(R);
                     break;
                 case 2:
+                    R.modifReservation();
+                    retourGesResas(R);
                     break;
                 case 3:
+                    R.annulReservation();
+                    retourGesResas(R);
                     break;
 
             }           
         }
 
-        public static void GererRestaurant()
+        public static void GererRestaurant(Restaurant R)
         {
-            int choix = 0;
 
             Console.WriteLine("+----------------------------------------------------------------------------+");
             Console.WriteLine("|                           GESTION DU RESTAURANT                            |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
-            Console.WriteLine("| Requête 1 | Modifier le nom du restaurant                                  |");
-            Console.WriteLine("|  TAPEZ 1  |                                                                |");
+            Console.WriteLine("|  TAPEZ 1  | Modifier le nom du restaurant                                  |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
-            Console.WriteLine("| Requête 2 | Modifier les horaires d'ouverture                              |");
-            Console.WriteLine("|  TAPEZ 2  |                                                                |");
+            Console.WriteLine("|  TAPEZ 2  | Modifier le nombre max de cuisiniers                           |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
-            Console.WriteLine("| Requête 3 | Modifier les autres infos                                      |");
-            Console.WriteLine("|  TAPEZ 3  |                                                                |");
+            Console.WriteLine("|  TAPEZ 3  | Modifier le nombre max de serveurs                             |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("|  TAPEZ 4  | Modifier le nombre max de clients                              |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("|  TAPEZ 5  | Modifier le ratio serveur/clients                              |");
+            Console.WriteLine("+-----------+----------------------------------------------------------------+");
+            Console.WriteLine("|  TAPEZ 6  | Modifier le ratio cuisinier/clients                            |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
             Console.WriteLine("|  Tapez 0  | Retourner au menu principal                                    |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
 
-            string frappe;
+            int frappe;
             do
             {
                 Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
-                frappe = Console.ReadLine();
+                frappe = gestErreurEntier();
             }
-            while (frappe != "0" && frappe != "1" && frappe != "2" && frappe != "3");
-
-            choix = int.Parse(frappe);
-            switch(choix)
+            while (frappe < 0 && frappe > 6);
+            switch(frappe)
             {
                 case 0:
-                    Menu();
+                    Menu(R);
                     break;
                 case 1:
+                    R.modifNomRestaurant();
+                    retourGesRestau(R);
                     break;
                 case 2:
+                    R.modifNbMaxCuisiniers();
+                    retourGesRestau(R);
                     break;
                 case 3:
+                    R.modifNbMaxServeurs();
+                    retourGesRestau(R);
+                    break;
+                case 4:
+                    R.modifNbMaxClients();
+                    retourGesRestau(R);
+                    break;
+                case 5:
+                    R.modifRatioServeurClient();
+                    retourGesRestau(R);
+                    break;
+                case 6:
+                    R.modifRatioCuisinierClient();
+                    retourGesRestau(R);
                     break;
             }
         }
 
-        public static void GererTable()
+        public static void GererTable(Restaurant R)
         {
-            int choix = 0;
 
             Console.WriteLine("+----------------------------------------------------------------------------+");
             Console.WriteLine("|                         GESTION DES TABLES                                 |");
@@ -171,30 +195,31 @@ namespace Projet_2015
             Console.WriteLine("|  Tapez 0  | Retourner au menu principal                                    |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
 
-            string frappe;
+            int frappe;
             do
             {
                 Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
-                frappe = Console.ReadLine();
+                frappe = gestErreurEntier();
             }
-            while (frappe != "0" && frappe != "1" && frappe != "2");
-
-            choix = int.Parse(frappe);
-            switch (choix)
+            while (frappe < 0 && frappe > 2);
+            switch (frappe)
             {
                 case 0:
-                    Menu();
+                    Menu(R);
                     break;
                 case 1:
+                    R.ajoutTable();
+                    retourGesTables(R);
                     break;
                 case 2:
+                    R.retireTable();
+                    retourGesTables(R);
                     break;
             }
         }
 
-        public static void GererFormule()
+        public static void GererFormule(Restaurant R)
         {
-            int choix = 0;
 
             Console.WriteLine("+----------------------------------------------------------------------------+");
             Console.WriteLine("|                           GESTION DES FORMULES                             |");
@@ -211,19 +236,17 @@ namespace Projet_2015
             Console.WriteLine("|  Tapez 0  | Retourner au menu principal                                    |");
             Console.WriteLine("+-----------+----------------------------------------------------------------+");
 
-            string frappe;
+            int frappe;
             do
             {
                 Console.WriteLine("Entrez le numéro de la requête souhaitée s'il vous plait.");
-                frappe = Console.ReadLine();
+                frappe = gestErreurEntier();
             }
-            while (frappe != "0" && frappe != "1" && frappe != "2" && frappe != "3");
-
-            choix = int.Parse(frappe);
-            switch (choix)
+            while (frappe < 0 && frappe > 3);
+            switch (frappe)
             {
                 case 0:
-                    Menu();
+                    Menu(R);
                     break;
                 case 1:
                     break;
@@ -234,34 +257,80 @@ namespace Projet_2015
             }
         }
 
-        public static int gestErreurEntier(int a)
+        public static int gestErreurEntier()
         {
             try
             {
-                a = int.Parse(Console.ReadLine());
+                int a = int.Parse(Console.ReadLine());
+                if (a < 0)
+                {
+                    Console.WriteLine("Veuillez entrer un entier valide supérieur ou égal à 0.");
+                    a = gestErreurEntier();
+                }
                 return a;
             }
             catch
             {
                 Console.WriteLine("Veuillez entrer un entier valide.");
-                gestErreurEntier(a);
+                int a = gestErreurEntier();
                 return a;
             }
         }
-        public static double gestErreurDouble(double a)
+        
+        public static double gestErreurDouble()
         {
             try
             {
-                a = double.Parse(Console.ReadLine());
+                double a = double.Parse(Console.ReadLine());
+                if (a < 0)
+                {
+                    Console.WriteLine("Veuillez entrer un nombre réel valide supérieur ou égal à 0.");
+                    a = gestErreurDouble();
+                }
                 return a;
             }
             catch
             {
-                Console.WriteLine("Veuillez entrer un entier valide.");
-                gestErreurDouble(a);
+                Console.WriteLine("Veuillez entrer un nombre réel valide.");
+                double a = gestErreurDouble();
                 return a;
             }
         }
 
+        public static bool gestErreurBool()
+        {
+            try
+            {
+                bool a = bool.Parse(Console.ReadLine());
+                return a;
+            }
+            catch
+            {
+                Console.WriteLine("Veuillez entrer 0 ou 1.");
+                bool a = gestErreurBool();
+                return a;
+            }
+        }
+
+        public static void retourGesResas(Restaurant R)
+        {
+            Console.WriteLine("Appuyez sur entrée pour revenir au menu de gestion des réservations...");
+            Console.ReadLine();
+            GererReservation(R);
+        }
+
+        public static void retourGesRestau(Restaurant R)
+        {
+            Console.WriteLine("Appuyez sur entrée pour revenir au menu de gestion du restaurant...");
+            Console.ReadLine();
+            GererRestaurant(R);
+        }
+
+        public static void retourGesTables(Restaurant R)
+        {
+            Console.WriteLine("Appuyez sur entrée pour revenir au menu de gestion de tables...");
+            Console.ReadLine();
+            GererTable(R);
+        }
     }
 }
